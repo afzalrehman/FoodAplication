@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Request;
 
 class User extends Authenticatable
 {
@@ -46,14 +47,27 @@ class User extends Authenticatable
         ];
     }
 
-
-    public function UserData()
+    public static function UserData($request)
     {
-        return  $this::select('users.*')
-            ->orderBy('id', 'DESC')
-            ->paginate();
-
-            
+        $return = self::select('users.*')->orderBy('id', 'DESC');
+        
+        // Check if the 'role' parameter exists in the request
+        if (!empty($request->has('role')) && $request->role != 'all') {
+         $return =   $return->where('role', $request->role);
+        }
+        elseif (!empty($request->get('search')) ) {
+         $return =   $return->where('users.name', 'like', '%' . $request->get('search') .'%')
+         ->orWhere('users.username', 'like', '%' . $request->get('search') .'%')
+         ->orWhere('users.phone', 'like', '%' . $request->get('search') .'%')
+         ->orWhere('users.employeeID', 'like', '%' . $request->get('search') .'%')
+         ->orWhere('users.email', 'like', '%' . $request->get('search') .'%')
+         ->orWhere('users.role', 'like', '%' . $request->get('search') .'%')
+         ->orWhere('users.status', 'like', '%' . $request->get('search') .'%');
+        }
+        
+        return $return->paginate(10);
     }
+    
+    
 
 }
