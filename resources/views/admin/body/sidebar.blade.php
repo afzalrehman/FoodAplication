@@ -23,25 +23,110 @@
     
         <li>
           <a href="javascript:;" class="has-arrow">
-            <div class="parent-icon"><i class="material-icons-outlined">build</i></div>
-            <div class="menu-title">SSOPP</div>
+              <div class="parent-icon"><i class="material-icons-outlined">widgets</i>
+              </div>
+              <div class="menu-title">SQF
+              </div>
           </a>
           <ul>
-            <li><a href="widgets-data.html"><i class="material-icons-outlined">data_usage</i>Data</a></li>
-            <li><a href="widgets-static.html"><i class="material-icons-outlined">insert_drive_file</i>Static</a></li>
+              <li>
+                  <a href="javascript:;" class="has-arrow">
+                      <div class="parent-icon"><i class="material-icons-outlined">widgets</i>
+                      </div>
+                      <div class="menu-title">Folder 1
+                      </div>
+                  </a>
+                  <ul>
+                      <li>
+                          <a href="widgets-data.html"><i
+                                  class="material-icons-outlined">insert_drive_file</i>Form 1</a>
+                      </li>
+                      <li>
+                          <a href="widgets-static.html"><i
+                                  class="material-icons-outlined">insert_drive_file</i>Form 2</a>
+                      </li>
+
+                  </ul>
+
+
+              </li>
+              <li>
+                  <a href="javascript:;" class="has-arrow">
+                      <div class="parent-icon"><i class="material-icons-outlined">widgets</i>
+                      </div>
+                      <div class="menu-title">Folder 2
+                      </div>
+                  </a>
+                  <ul>
+                      <li>
+                          <a href="widgets-data.html"><i
+                                  class="material-icons-outlined">insert_drive_file</i>Form 1</a>
+                      </li>
+                      <li>
+                          <a href="widgets-static.html"><i
+                                  class="material-icons-outlined">insert_drive_file</i>Form 2</a>
+                      </li>
+
+                  </ul>
+
+
+              </li>
+
           </ul>
-        </li>
-    
-        <li>
+      </li>
+      <li>
           <a href="javascript:;" class="has-arrow">
-            <div class="parent-icon"><i class="material-icons-outlined">verified_user</i></div>
-            <div class="menu-title">Haccp</div>
+              <div class="parent-icon"><i class="material-icons-outlined">widgets</i>
+              </div>
+              <div class="menu-title">HACCP
+              </div>
           </a>
           <ul>
-            <li><a href="widgets-data.html"><i class="material-icons-outlined">data_usage</i>Data</a></li>
-            <li><a href="widgets-static.html"><i class="material-icons-outlined">insert_drive_file</i>Static</a></li>
+              <li>
+                  <a href="javascript:;" class="has-arrow">
+                      <div class="parent-icon"><i class="material-icons-outlined">widgets</i>
+                      </div>
+                      <div class="menu-title">Folder 1
+                      </div>
+                  </a>
+                  <ul>
+                      <li>
+                          <a href="widgets-data.html"><i
+                                  class="material-icons-outlined">insert_drive_file</i>Form 1</a>
+                      </li>
+                      <li>
+                          <a href="widgets-static.html"><i
+                                  class="material-icons-outlined">insert_drive_file</i>Form 2</a>
+                      </li>
+
+                  </ul>
+
+
+              </li>
+              <li>
+                  <a href="javascript:;" class="has-arrow">
+                      <div class="parent-icon"><i class="material-icons-outlined">widgets</i>
+                      </div>
+                      <div class="menu-title">Folder 2
+                      </div>
+                  </a>
+                  <ul>
+                      <li>
+                          <a href="widgets-data.html"><i
+                                  class="material-icons-outlined">insert_drive_file</i>Form 1</a>
+                      </li>
+                      <li>
+                          <a href="widgets-static.html"><i
+                                  class="material-icons-outlined">insert_drive_file</i>Form 2</a>
+                      </li>
+
+                  </ul>
+
+
+              </li>
+
           </ul>
-        </li>
+      </li>
     
         <li>
           <a href="javascript:;" class="has-arrow">

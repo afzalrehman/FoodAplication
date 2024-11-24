@@ -33,8 +33,8 @@
 
 <body>
 
-@include('admin.body.header')
-@include('admin.body.sidebar')
+@include('QC.body.header')
+@include('QC.body.sidebar')
   <!--start main wrapper-->
   <main class="main-wrapper">
  @yield('content')
@@ -45,7 +45,7 @@
      <div class="overlay btn-toggle"></div>
   <!--end overlay-->
 
-  @include('admin.body.footer')
+  @include('QC.body.footer')
 
   <!--start cart-->
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart">

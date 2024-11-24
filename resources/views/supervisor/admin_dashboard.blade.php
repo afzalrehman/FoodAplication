@@ -28,13 +28,14 @@
   <link href="{{asset('sass/semi-dark.css')}}" rel="stylesheet">
   <link href="{{asset('sass/bordered-theme.css')}}" rel="stylesheet">
   <link href="{{asset('sass/responsive.css')}}" rel="stylesheet">
-
+  <link href="{{asset('assets/plugins/fancy-file-uploader/fancy_fileupload.css')}}" rel="stylesheet">
+	<link href="{{asset('assets/plugins/Drag-And-Drop/dist/imageuploadify.min.css')}}" rel="stylesheet">
 </head>
 
 <body>
 
-@include('admin.body.header')
-@include('admin.body.sidebar')
+@include('supervisor.body.header')
+@include('supervisor.body.sidebar')
   <!--start main wrapper-->
   <main class="main-wrapper">
  @yield('content')
@@ -45,7 +46,7 @@
      <div class="overlay btn-toggle"></div>
   <!--end overlay-->
 
-  @include('admin.body.footer')
+  @include('supervisor.body.footer')
 
   <!--start cart-->
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart">
@@ -253,6 +254,13 @@
   <script src="{{asset('assets/plugins/apexchart/apexcharts.min.js')}}"></script>
   <script src="{{asset('assets/plugins/simplebar/js/simplebar.min.js')}}"></script>
   <script src="{{asset('assets/plugins/peity/jquery.peity.min.js')}}"></script>
+
+
+  <script src="{{asset('assets/plugins/fancy-file-uploader/jquery.ui.widget.js')}}"></script>
+	<script src="{{asset('assets/plugins/fancy-file-uploader/jquery.fileupload.js')}}"></script>
+	<script src="{{asset('assets/plugins/fancy-file-uploader/jquery.iframe-transport.js')}}"></script>
+	<script src="{{asset('assets/plugins/fancy-file-uploader/jquery.fancy-fileupload.js')}}"></script>
+	<script src="{{asset('assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js')}}"></script>
   <script>
     $(".data-attributes span").peity("donut")
   </script>

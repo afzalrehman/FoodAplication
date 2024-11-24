@@ -114,6 +114,7 @@ return [
     |
     */
 
+    'remember_lifetime' => 525600,
     'lottery' => [2, 100],
 
     /*
@@ -129,7 +130,7 @@ return [
 
     'cookie' => env(
         'SESSION_COOKIE',
-        Str::slug(env('APP_NAME', 'laravel'), '_').'_session'
+        Str::slug(env('APP_NAME', 'laravel'), '_') . '_session'
     ),
 
     /*

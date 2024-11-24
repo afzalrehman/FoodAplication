@@ -28,19 +28,20 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        // dd($request->role);
 
         if ($request->user()->role == 'Admin') {
             return redirect()->intended(route('Admin.Dashboard'));
         }
          elseif ($request->user()->role == 'Plant_Manager') {
-            return redirect()->intended(route('plant.manager.Dashboard'));
+            return redirect()->intended(route('plantmanager.dashboard'));
         }
          elseif ($request->user()->role == 'QC') {
             return redirect()->intended(route('qc.Dashboard'));
         }
          elseif ($request->user()->role == 'Supervisor') {
-            return redirect()->intended(route('supervisor', absolute: false));
+            return redirect()->intended(route('supervisor'));
+        }else{
+            return redirect()->intended(route('login', absolute: false));
         }
     }
 
@@ -55,6 +56,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login');
     }
 }

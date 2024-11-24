@@ -15,7 +15,7 @@
         <!--navigation-->
         <ul class="metismenu" id="sidenav">
           <li>
-            <a href="cards.html">
+            <a href="{{url('supervisor/dashboard')}}">
               <div class="parent-icon"><i class="material-icons-outlined">home</i>
               </div>
               <div class="menu-title">Dashboard</div>
@@ -29,9 +29,11 @@
               <div class="menu-title">Vendor</div>
             </a>
             <ul>
-              <li><a href="widgets-data.html"><i class="material-icons-outlined">arrow_right</i>Data</a>
+              {{-- <li><a href="{{url('supervisor/vendor/add')}}"><i class="material-icons-outlined">arrow_right</i>Add Form</a> --}}
               </li>
-              <li><a href="widgets-static.html"><i class="material-icons-outlined">arrow_right</i>Static</a>
+              <li><a href="{{url('supervisor/vendor/list')}}"><i class="material-icons-outlined">arrow_right</i>List</a>
+              </li>
+              <li><a href="{{url('supervisor/vendor/upload')}}"><i class="material-icons-outlined">arrow_right</i>Upload File</a>
               </li>
             </ul>
           </li>
