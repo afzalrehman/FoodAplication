@@ -13,11 +13,11 @@ class role
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $role)
+    public function handle(Request $request, Closure $next, $role):Response
     {
         // Check if user is authenticated and has the specified role
         if (!$request->user() || $request->user()->role !== $role) {
-            return redirect('dashboard');
+            return redirect('admin/login');
         }
 
         return $next($request);
