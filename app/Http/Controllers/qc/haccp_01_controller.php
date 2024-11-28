@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\qc;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class haccp_01_controller extends Controller

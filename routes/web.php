@@ -1,10 +1,15 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\haccp_01_controller;
+use App\Http\Controllers\qc\haccp_01_controller;
 use App\Http\Controllers\Plantmanager\PlantManagerController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\qc\haccp_02_controller;
+use App\Http\Controllers\qc\haccp_03_controller;
 use App\Http\Controllers\Qc\QcController;
+use App\Http\Controllers\sqf\sqf_01_controller;
+use App\Http\Controllers\sqf\sqf_02_controller;
+use App\Http\Controllers\sqf\sqf_03_controller;
 use App\Http\Controllers\SupervisorController;
 use App\Http\Controllers\supervisorVendorController;
 use App\Http\Controllers\VendorController;
@@ -96,7 +101,7 @@ Route::middleware(['auth', 'role:3'])->group(function () {
 // QC Routes
 Route::middleware(['auth', 'role:4'])->group(function () {
     Route::get('qc', [QcController::class, 'Qc_Dashboard'])->name('qc.Dashboard');
-    Route::prefix('qc/')->name('admin.')->group(function () {
+    Route::prefix('qc/')->name('qc.')->group(function () {
         // profile--------
         Route::get('profile', [QcController::class, 'qc_profile_edit'])->name('profile.edit');
         Route::post('profile/update', [QcController::class, 'qc_profile_update'])->name('profile.update');
@@ -104,6 +109,11 @@ Route::middleware(['auth', 'role:4'])->group(function () {
 
         // haccp-------
         Route::get('haccp-01', [haccp_01_controller::class, 'qc_haccp_01_add'])->name('haccp.add');
+        Route::get('haccp-02', [haccp_02_controller::class, 'qc_haccp_02_add'])->name('haccp_2.add');
+        Route::get('haccp-03', [haccp_03_controller::class, 'qc_haccp_03_add'])->name('haccp_3.add');
+        Route::get('sqf-01', [sqf_01_controller::class, 'qc_sqf_01_add'])->name('sqf_1.add');
+        Route::get('sqf-02', [sqf_02_controller::class, 'qc_sqf_02_add'])->name('sqf_2.add');
+        Route::get('sqf-03', [sqf_03_controller::class, 'qc_sqf_03_add'])->name('sqf_3.add');
     });
 });
 

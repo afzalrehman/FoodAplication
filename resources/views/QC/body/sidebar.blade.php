@@ -34,7 +34,7 @@
                            <a href="javascript:;" class="has-arrow">
                                <div class="parent-icon"><i class="material-icons-outlined">widgets</i>
                                </div>
-                               <div class="menu-title">Folder 1
+                               <div class="menu-title">Document
                                </div>
                            </a>
                            <ul>
@@ -55,17 +55,21 @@
                            <a href="javascript:;" class="has-arrow">
                                <div class="parent-icon"><i class="material-icons-outlined">widgets</i>
                                </div>
-                               <div class="menu-title">Folder 2
+                               <div class="menu-title">Form
                                </div>
                            </a>
                            <ul>
                                <li>
-                                   <a href="widgets-data.html"><i
-                                           class="material-icons-outlined">insert_drive_file</i>Form 1</a>
+                                   <a href="{{route('qc.sqf_1.add')}}"><i
+                                           class="material-icons-outlined">insert_drive_file</i>SQF 01</a>
                                </li>
                                <li>
-                                   <a href="widgets-static.html"><i
-                                           class="material-icons-outlined">insert_drive_file</i>Form 2</a>
+                                   <a href="{{route('qc.sqf_2.add')}}"><i
+                                           class="material-icons-outlined">insert_drive_file</i>SQF 02</a>
+                               </li>
+                               <li>
+                                   <a href="{{route('qc.sqf_3.add')}}"><i
+                                           class="material-icons-outlined">insert_drive_file</i>SQF 03</a>
                                </li>
 
                            </ul>
@@ -87,36 +91,7 @@
                            <a href="javascript:;" class="has-arrow">
                                <div class="parent-icon"><i class="material-icons-outlined">widgets</i>
                                </div>
-                               <div class="menu-title">Folder 1
-                               </div>
-                           </a>
-                           <ul>
-                               <li>
-                                   <a href="{{url('qc/haccp-01')}}"><i
-                                           class="material-icons-outlined">insert_drive_file</i>HACCP-01</a>
-                               </li>
-                               <li>
-                                   <a href="widgets-static.html"><i
-                                           class="material-icons-outlined">insert_drive_file</i>HACCP-02</a>
-                               </li>
-                               <li>
-                                   <a href="widgets-static.html"><i
-                                           class="material-icons-outlined">insert_drive_file</i>HACCP-03</a>
-                               </li>
-                               <li>
-                                   <a href="widgets-static.html"><i
-                                           class="material-icons-outlined">insert_drive_file</i>HACCP-04</a>
-                               </li>
-
-                           </ul>
-
-
-                       </li>
-                       <li>
-                           <a href="javascript:;" class="has-arrow">
-                               <div class="parent-icon"><i class="material-icons-outlined">widgets</i>
-                               </div>
-                               <div class="menu-title">Folder 2
+                               <div class="menu-title">Document
                                </div>
                            </a>
                            <ul>
@@ -127,6 +102,38 @@
                                <li>
                                    <a href="widgets-static.html"><i
                                            class="material-icons-outlined">insert_drive_file</i>Form 2</a>
+                               </li>
+
+
+                           </ul>
+
+
+                       </li>
+                       <li>
+                           <a href="javascript:;" class="has-arrow">
+                               <div class="parent-icon"><i class="material-icons-outlined">widgets</i>
+                               </div>
+                               <div class="menu-title">Form
+                               </div>
+                           </a>
+                           <ul>
+
+
+                               <li>
+                                   <a href="{{ url('qc/haccp-01') }}"><i
+                                           class="material-icons-outlined">insert_drive_file</i>HACCP-01</a>
+                               </li>
+                               <li>
+                                   <a href="{{ route('qc.haccp_2.add') }}"><i
+                                           class="material-icons-outlined">insert_drive_file</i>HACCP-02</a>
+                               </li>
+                               <li>
+                                   <a href="{{ route('qc.haccp_3.add') }}"><i
+                                           class="material-icons-outlined">insert_drive_file</i>HACCP-03</a>
+                               </li>
+                               <li>
+                                   <a href="widgets-static.html"><i
+                                           class="material-icons-outlined">insert_drive_file</i>HACCP-04</a>
                                </li>
 
                            </ul>
