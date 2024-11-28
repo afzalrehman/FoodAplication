@@ -16,8 +16,8 @@ class role
     public function handle(Request $request, Closure $next, $role):Response
     {
         // Check if user is authenticated and has the specified role
-        if (!$request->user() || $request->user()->role !== $role) {
-            return redirect('admin/login');
+        if (!$request->user() || (int) $request->user()->role !== (int) $role  ) {
+            return redirect('login');
         }
 
         return $next($request);

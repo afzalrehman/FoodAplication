@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     public static function UserData($request)
     {
-        $return = self::select('users.*')->orderBy('id', 'DESC');
+        $return = self::select('users.*')->where('role', '!=', 0)->where('role', '!=', 1)->orderBy('id', 'DESC');
         
         // Check if the 'role' parameter exists in the request
         if (!empty($request->has('role')) && $request->role != 'all') {
@@ -65,7 +65,7 @@ class User extends Authenticatable
          ->orWhere('users.status', 'like', '%' . $request->get('search') .'%');
         }
         
-        return $return->paginate(10);
+        return $return->where('role', '!=', 0)->where('role', '!=', 1)->paginate(10);
     }
     
     

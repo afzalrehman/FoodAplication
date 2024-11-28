@@ -20,12 +20,13 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->enum('role' ,['Admin' , 'Plant Manager' , 'QC' , 'Supervisor'])->default('Supervisor');
-            $table->enum('status' , ['active' , 'inactive'])->default('active');
+            $table->foreignId('role')->nullable()->constrained('roles')->onDelete('cascade');
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
+        
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();

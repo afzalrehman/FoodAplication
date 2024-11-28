@@ -82,6 +82,8 @@
                                                     <a href="javascript:;" class="product-title">{{ $item->name }}</a>
                                                     <?php
                                                     $roles= [
+                                                        0 => 'Super-admin',
+                                                        1 => 'Admin',
                                                         2 => 'PlantManger',
                                                         3 => 'Supervisor',
                                                         4 => 'QC',

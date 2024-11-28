@@ -6,7 +6,7 @@ use App\Models\vendormodel;
 use Illuminate\Http\Request;
 
 
-class supervisorVendorController extends Controller
+class VendorController extends Controller
 {
     public function vandor_list(Request $request){
         $data['vendor_list'] = vendormodel::vendor($request);

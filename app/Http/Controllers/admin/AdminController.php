@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
-use App\Mail\forgotPasswordMail;
+use App\Http\Controllers\Controller;
+use App\Models\rolesModel;
+use Illuminate\Http\Request;
 use App\Mail\registerMail;
 use App\Models\User;
 use Auth;
+use DB;
 use Hash;
-use Illuminate\Http\Request;
 use Mail;
-use Nette\Utils\Random;
 use Str;
 
-class AdminController extends Controller
+class Admincontroller extends Controller
 {
     public function AdminDashboard()
     {
@@ -21,11 +22,11 @@ class AdminController extends Controller
     public function Admin_user_list(Request $request)
     {
         // Count users by role
-        $data['admin_count'] = User::where('role', 'admin')->count();
-        $data['plantManager_count'] = User::where('role', 'Plant_Manager')->count();
-        $data['Qc_count'] = User::where('role', 'QC')->count();
-        $data['supervisor_count'] = User::where('role', 'Supervisor')->count();
-        $data['alluser_count'] = User::count();
+        // $data['admin_count'] = User::where('role', '1')->count();
+        $data['plantManager_count'] = User::where('role', '2')->count();
+        $data['supervisor_count'] = User::where('role', '3')->count();
+        $data['Qc_count'] = User::where('role', '4')->count();
+        $data['alluser_count'] = User::where('role', '!=', 0)->where('role', '!=', 1)->count();
 
         // Get filtered user data based on role, if any
         $data['user'] = User::UserData($request);
@@ -35,11 +36,13 @@ class AdminController extends Controller
 
     public function Admin_user_add()
     {
-        return view('admin.user.add');
+        $data['roles'] = rolesModel::where('id', '!=', 0)->where('id', '!=', 1)->get();
+        return view('admin.user.add', $data);
     }
     public function Admin_user_edit($id, Request $request)
     {
         $data['editUser'] = User::find($id);
+        $data['roles'] = DB::table('role')->where('id', '!=', 0)->get();
         return view('admin.user.edit', $data);
     }
     public function Admin_user_view($id, Request $request)
@@ -111,70 +114,7 @@ class AdminController extends Controller
     }
 
 
-    public function verify($token)
-    {
-        $user = User::where('remember_token', '=', $token)->first();
-        if (!empty($user)) {
-            $user->email_verified_at = date('Y-m-d H:i:s');
-            $user->remember_token = Str::random(50);
-            $user->status = 'active';
-            $user->save();
-            return redirect('/login')->with('success', 'Your Account  successfully verified ');
-        } else {
-            abort(404);
-        }
-    }
 
-    public function forgot_password()
-    {
-        return view('auth.forgot-password');
-    }
-
-    public function forgot_password_post(Request $request)
-    {
-        $request->validate([
-            'email' => 'required',
-        ]);
-        $user = User::where('email', '=', $request->email)->first();
-        if (!empty($user)) {
-
-            $user->remember_token = Str::random(50);
-            $user->save();
-
-            Mail::to($user->email)->send(new forgotPasswordMail($user));
-            // Redirect with success message
-
-            return redirect()->back()->with('success', 'please check your email and reset your password');
-        } else {
-            return redirect()->back()->with('error', 'Email Not Found in the System');
-        }
-    }
-
-    public function reset_get($token)
-    {
-        $data['user'] = User::where('remember_token', '=', $token)->first();
-        if (!empty($data)) {
-            return view('auth.reset-password', $data);
-        } else {
-            return redirect()->back()->with('success', 'Email Not Found in the System');
-        }
-    }
-    public function reset_store($token, Request $request)
-    {
-        $user = User::where('remember_token', '=', $token)->first();
-        $request->validate([
-            'password' => 'required|min:8|confirmed',
-        ]);
-        if (!empty($user)) {
-
-            $user->password = $request->password;
-            $user->remember_token = Str::random(50);
-            $user->save();
-            return redirect('login')->with('success', 'Password Reset Successfuly...!');
-        } else {
-            return redirect()->back()->with('success', 'Email Not Found in the System');
-        }
-    }
 
     public function user_profile_edit(Request $request)
     {
@@ -202,12 +142,12 @@ class AdminController extends Controller
     public function user_password_change(Request $request)
     {
         $userProfile = User::find(Auth::user()->id);
-
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|confirmed|min:8',
+        ]);
         if (Hash::check($request->current_password, $userProfile->password)) {
-            $request->validate([
-                'current_password' => 'required',
-                'new_password' => 'required|confirmed|min:8',
-            ]);
+           
 
             $userProfile->password = Hash::make($request->new_password);
             $userProfile->save();
@@ -215,14 +155,5 @@ class AdminController extends Controller
         } else {
             return redirect()->back()->with('error', 'Old Password Does not match.');
         }
-    }
-    
-
-    public function logout(Request $request)
-    {
-        Auth::guard('web')->logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect('login');
     }
 }

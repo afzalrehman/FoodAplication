@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\plantmanager;
 
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\User;
 use Hash;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PlantManagerController extends Controller
@@ -53,15 +54,5 @@ class PlantManagerController extends Controller
         } else {
             return redirect()->back()->with('error', 'Old Password Does not match.');
         }
-    }
-    
-
-
-    public function plantmanager_logout(Request $request)
-    {
-        Auth::guard('web')->logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect('/login');
     }
 }

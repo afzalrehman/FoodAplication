@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\haccp_01_controller;
-use App\Http\Controllers\PlantManagerController;
+use App\Http\Controllers\Plantmanager\PlantManagerController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\QcController;
+use App\Http\Controllers\Qc\QcController;
 use App\Http\Controllers\SupervisorController;
 use App\Http\Controllers\supervisorVendorController;
+use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -23,81 +24,89 @@ use Illuminate\Support\Facades\Route;
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
 // Admin Routes
-Route::middleware(['auth', 'role:Admin'])->group(function () {
 
-    Route::get('/', [AdminController::class, 'AdminDashboard'])->name('Admin.Dashboard');
 
-    // User Management
-    Route::get('admin/user/list', [AdminController::class, 'Admin_user_list']);
-    Route::get('admin/user/add', [AdminController::class, 'Admin_user_add']);
-    Route::get('admin/user/edit/{id}', [AdminController::class, 'Admin_user_edit']);
-    Route::post('admin/user/update/{id}', [AdminController::class, 'Admin_user_update']);
-    Route::post('admin/user/add', [AdminController::class, 'Admin_user_store']);
-    Route::get('admin/user/delete/{id}', [AdminController::class, 'Admin_user_delete']);
-    Route::get('admin/user/view/{id}', [AdminController::class, 'Admin_user_view']);
-    Route::get('profile', [AdminController::class, 'user_profile_edit'])->name('profile.edit');
-    Route::post('profile/update', [AdminController::class, 'user_profile_update']);
-    Route::post('user/password/change', [AdminController::class, 'user_password_change']);
+Route::middleware(['auth', 'role:0'])->group(function () {
 
-    // Logout
-    Route::get('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+    Route::get('/', [AdminController::class, 'AdminDashboard'])->name('superadmin');
+    Route::prefix('superadmim/')->name('superadmim.')->group(function () {
+        // admin Management
+        Route::get('user/list', [AdminController::class, 'Admin_user_list'])->name('user.list');
+        Route::get('user/add', [AdminController::class, 'Admin_user_add'])->name('user.add');
+        Route::get('user/edit/{id}', [AdminController::class, 'Admin_user_edit'])->name('user.edit');
+        Route::post('user/update/{id}', [AdminController::class, 'Admin_user_update'])->name('user.update');
+        Route::post('user/add', [AdminController::class, 'Admin_user_store'])->name('user.edit');
+        Route::get('user/delete/{id}', [AdminController::class, 'Admin_user_delete'])->name('user.delete');
+        Route::get('user/view/{id}', [AdminController::class, 'Admin_user_view'])->name('user.view');
+
+        Route::get('profile', [AdminController::class, 'user_profile_edit'])->name('profile.edit');
+        Route::post('profile/update', [AdminController::class, 'user_profile_update'])->name('profile.update');
+        Route::post('password/change', [AdminController::class, 'user_password_change'])->name('profile.change');
+    });
+});
+
+Route::middleware(['auth', 'role:1'])->group(function () {
+
+    Route::prefix('admin/')->name('admin.')->group(function () {
+        Route::get('/', [AdminController::class, 'AdminDashboard'])->name('Admin.Dashboard');
+        // admin Management
+        Route::get('user/list', [AdminController::class, 'Admin_user_list'])->name('user.list');
+        Route::get('user/add', [AdminController::class, 'Admin_user_add'])->name('user.add');
+        Route::get('user/edit/{id}', [AdminController::class, 'Admin_user_edit'])->name('user.edit');
+        Route::post('user/update/{id}', [AdminController::class, 'Admin_user_update'])->name('user.update');
+        Route::post('user/add', [AdminController::class, 'Admin_user_store'])->name('user.edit');
+        Route::get('user/delete/{id}', [AdminController::class, 'Admin_user_delete'])->name('user.delete');
+        Route::get('user/view/{id}', [AdminController::class, 'Admin_user_view'])->name('user.view');
+
+        Route::get('profile', [AdminController::class, 'user_profile_edit'])->name('profile.edit');
+        Route::post('profile/update', [AdminController::class, 'user_profile_update'])->name('profile.update');
+        Route::post('password/change', [AdminController::class, 'user_password_change'])->name('profile.change');
+    });
 });
 
 // Plant Manager Routes
-Route::middleware(['auth', 'role:Plant_Manager'])->group(function () {
-    Route::get('/plantmanager', [PlantManagerController::class, 'Plant_Manager_Dashboard'])->name('plantmanager.dashboard');
+Route::middleware(['auth', 'role:2'])->group(function () {
+    Route::get('plantmanager', [PlantManagerController::class, 'Plant_Manager_Dashboard'])->name('dashboard');
+    Route::prefix('plantmanager/')->name('admin.')->group(function () {
+        // profile--------
+        Route::get('profile', [PlantManagerController::class, 'plantmanager_profile'])->name('profile');
+        Route::post('profile/update', [PlantManagerController::class, 'plantmanager_profile_update'])->name('update');
+        Route::post('password/change', [PlantManagerController::class, 'plantmanager_user_password_change'])->name('change');
+    });
+});
 
-     // profile--------
-     Route::get('plantmanager/profile', [PlantManagerController::class, 'plantmanager_profile'])->name('plantmanager.profile');
-     Route::post('profile/update', [PlantManagerController::class, 'plantmanager_profile_update']);
-     Route::post('user/password/change', [PlantManagerController::class, 'plantmanager_user_password_change']);
+// Supervisor Routes
+Route::middleware(['auth', 'role:3'])->group(function () {
+    Route::get('supervisor', [SupervisorController::class, 'supervisor_dashboard'])->name('supervisor');
+    Route::prefix('supervisor/')->name('admin.')->group(function () {
+        // Vendor Management
+        Route::get('vendor/list', [VendorController::class, 'vandor_list'])->name('vendor.list');
+        Route::get('vendor/add', [VendorController::class, 'vandor_add'])->name('vendor.add');
+        Route::post('vendor/store', [VendorController::class, 'vandor_store'])->name('vendor.store');
+        Route::get('vendor/upload', [VendorController::class, 'vandor_upload'])->name('vendor.upload');
 
-    // Logout
-    Route::get('plantmanager/logout', [PlantManagerController::class, 'plantmanager_logout'])->name('plantmanager.logout');
+        // profile--------
+        Route::get('profile', [SupervisorController::class, 'supervisor_profile_edit'])->name('profile.edit');
+        Route::post('profile/update', [SupervisorController::class, 'supervisor_profile_update']);
+        Route::post('user/password/change', [SupervisorController::class, 'supervisor_user_password_change']);
+    });
+
 });
 
 // QC Routes
-Route::middleware(['auth', 'role:QC'])->group(function () {
+Route::middleware(['auth', 'role:4'])->group(function () {
     Route::get('qc', [QcController::class, 'Qc_Dashboard'])->name('qc.Dashboard');
+    Route::prefix('qc/')->name('admin.')->group(function () {
+        // profile--------
+        Route::get('profile', [QcController::class, 'qc_profile_edit'])->name('profile.edit');
+        Route::post('profile/update', [QcController::class, 'qc_profile_update'])->name('profile.update');
+        Route::post('password/change', [QcController::class, 'qc_user_password_change'])->name('password.change');
 
-    // profile--------
-    Route::get('profile', [QcController::class, 'qc_profile_edit'])->name('profile.edit');
-    Route::post('profile/update', [QcController::class, 'qc_profile_update']);
-    Route::post('user/password/change', [QcController::class, 'qc_user_password_change']);
-
-    // haccp-------
-    Route::get('qc/haccp-01', [haccp_01_controller::class, 'qc_haccp_01_add']);
-
-    // Logout
-    Route::get('QC/logout', [QcController::class, 'logout'])->name('qc.logout');
+        // haccp-------
+        Route::get('haccp-01', [haccp_01_controller::class, 'qc_haccp_01_add'])->name('haccp.add');
+    });
 });
 
-    // Supervisor Routes
-Route::middleware(['auth', 'role:Supervisor'])->group(function () {
-    Route::get('supervisor', [SupervisorController::class, 'supervisor_dashboard'])->name('supervisor');
 
-    // Vendor Management
-    Route::get('supervisor/vendor/list', [supervisorVendorController::class, 'vandor_list']);
-    Route::get('supervisor/vendor/add', [supervisorVendorController::class, 'vandor_add']);
-    Route::post('supervisor/vendor/store', [supervisorVendorController::class, 'vandor_store']);
-    Route::get('supervisor/vendor/upload', [supervisorVendorController::class, 'vandor_upload']);
-
-
-    // profile--------
-    Route::get('profile', [SupervisorController::class, 'supervisor_profile_edit'])->name('profile.edit');
-    Route::post('profile/update', [SupervisorController::class, 'supervisor_profile_update']);
-    Route::post('user/password/change', [SupervisorController::class, 'supervisor_user_password_change']);
-
-
-    // Logout
-    Route::get('supervisor/logout', [SupervisorController::class, 'logout'])->name('supervisor.logout');
-});
-
-Route::get('admin/login', [AdminController::class, 'login'])->name('login');
-Route::get('verify/{token}', [AdminController::class, 'verify'])->name('verify');
-Route::get('forgot-password', [AdminController::class, 'forgot_password']);
-Route::post('password/reset', [AdminController::class, 'forgot_password_post']);
-Route::get('password/reset/{token}', [AdminController::class, 'reset_get']);
-Route::post('password/store/{token}', [AdminController::class, 'reset_store']);
 
 require __DIR__ . '/auth.php';
