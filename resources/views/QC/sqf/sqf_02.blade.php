@@ -4,7 +4,6 @@
         <!-- [ page-header ] start -->
         <div class="main-content">
             <div class="row">
-                <div class="col-xl-12"><?php include_once './includes/alerts.php'; ?></div>
                 <div class="col-xl-12">
                     <div class="card invoice-container">
                         <div class="card-header">

@@ -10,9 +10,9 @@ use App\Http\Controllers\Qc\QcController;
 use App\Http\Controllers\sqf\sqf_01_controller;
 use App\Http\Controllers\sqf\sqf_02_controller;
 use App\Http\Controllers\sqf\sqf_03_controller;
-use App\Http\Controllers\SupervisorController;
+use App\Http\Controllers\Supervisor\SupervisorController;
 use App\Http\Controllers\supervisorVendorController;
-use App\Http\Controllers\VendorController;
+use App\Http\Controllers\Supervisor\VendorController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -53,7 +53,7 @@ Route::middleware(['auth', 'role:0'])->group(function () {
 Route::middleware(['auth', 'role:1'])->group(function () {
 
     Route::prefix('admin/')->name('admin.')->group(function () {
-        Route::get('/', [AdminController::class, 'AdminDashboard'])->name('Admin.Dashboard');
+        Route::get('/', [AdminController::class, 'AdminDashboard'])->name('dashboard');
         // admin Management
         Route::get('user/list', [AdminController::class, 'Admin_user_list'])->name('user.list');
         Route::get('user/add', [AdminController::class, 'Admin_user_add'])->name('user.add');
@@ -71,8 +71,8 @@ Route::middleware(['auth', 'role:1'])->group(function () {
 
 // Plant Manager Routes
 Route::middleware(['auth', 'role:2'])->group(function () {
-    Route::get('plantmanager', [PlantManagerController::class, 'Plant_Manager_Dashboard'])->name('dashboard');
-    Route::prefix('plantmanager/')->name('admin.')->group(function () {
+    Route::prefix('/')->name('plantmanager.')->group(function () {
+        Route::get('plantmanager', [PlantManagerController::class, 'Plant_Manager_Dashboard'])->name('dashboard');
         // profile--------
         Route::get('profile', [PlantManagerController::class, 'plantmanager_profile'])->name('profile');
         Route::post('profile/update', [PlantManagerController::class, 'plantmanager_profile_update'])->name('update');
