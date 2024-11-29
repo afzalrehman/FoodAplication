@@ -11,11 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Schema::create('roles', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('name');
+        //     $table->timestamps();
+        // });
         Schema::create('roles', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedBigInteger('id')->primary(); // Define `id` as primary without auto-increment
             $table->string('name');
             $table->timestamps();
         });
+
     }
 
     /**

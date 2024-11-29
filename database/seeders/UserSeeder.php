@@ -62,7 +62,7 @@ class UserSeeder extends Seeder
                 'role' => 4,
                 'status' => 'active',
             ]
-            
+
 
         ]);
     }
