@@ -11,6 +11,7 @@ use App\Http\Controllers\sqf\SQF01Controller;
 use App\Http\Controllers\sqf\sqf_01_controller;
 use App\Http\Controllers\sqf\sqf_02_controller;
 use App\Http\Controllers\sqf\sqf_03_controller;
+use App\Http\Controllers\superadmin\SuperadminController;
 use App\Http\Controllers\Supervisor\SupervisorController;
 use App\Http\Controllers\supervisorVendorController;
 use App\Http\Controllers\Supervisor\VendorController;
@@ -34,20 +35,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'role:0'])->group(function () {
 
+    Route::get('/', [SuperadminController::class, 'superadmin_Dashboard'])->name('superadmin');
     Route::prefix('superadmim/')->name('superadmim.')->group(function () {
-        Route::get('/', [AdminController::class, 'AdminDashboard'])->name('superadmin');
         // admin Management
-        Route::get('user/list', [AdminController::class, 'Admin_user_list'])->name('user.list');
-        Route::get('user/add', [AdminController::class, 'Admin_user_add'])->name('user.add');
-        Route::get('user/edit/{id}', [AdminController::class, 'Admin_user_edit'])->name('user.edit');
-        Route::post('user/update/{id}', [AdminController::class, 'Admin_user_update'])->name('user.update');
-        Route::post('user/add', [AdminController::class, 'Admin_user_store'])->name('user.edit');
-        Route::get('user/delete/{id}', [AdminController::class, 'Admin_user_delete'])->name('user.delete');
-        Route::get('user/view/{id}', [AdminController::class, 'Admin_user_view'])->name('user.view');
+        Route::get('user/list', [SuperadminController::class, 'superadmin_user_list'])->name('user.list');
+        Route::get('user/add', [SuperadminController::class, 'superadmin_user_add'])->name('user.add');
+        Route::get('user/edit/{id}', [SuperadminController::class, 'superadmin_user_edit'])->name('user.edit');
+        Route::post('user/update/{id}', [SuperadminController::class, 'superadmin_user_update'])->name('user.update');
+        Route::post('user/add', [SuperadminController::class, 'superadmin_user_store'])->name('user.edit');
+        Route::get('user/delete/{id}', [SuperadminController::class, 'superadmin_user_delete'])->name('user.delete');
+        Route::get('user/view/{id}', [SuperadminController::class, 'superadmin_user_view'])->name('user.view');
 
-        Route::get('profile', [AdminController::class, 'user_profile_edit'])->name('profile.edit');
-        Route::post('profile/update', [AdminController::class, 'user_profile_update'])->name('profile.update');
-        Route::post('password/change', [AdminController::class, 'user_password_change'])->name('profile.change');
+        Route::get('profile', [SuperadminController::class, 'superadmin_profile_edit'])->name('profile.edit');
+        Route::post('profile/update', [SuperadminController::class, 'superadmin_profile_update'])->name('profile.update');
+        Route::post('password/change', [SuperadminController::class, 'superadmin_password_change'])->name('profile.change');
     });
 });
 
@@ -83,8 +84,8 @@ Route::middleware(['auth', 'role:2'])->group(function () {
 
 // Supervisor Routes
 Route::middleware(['auth', 'role:3'])->group(function () {
-    Route::prefix('supervisor/')->name('admin.')->group(function () {
-        Route::get('/', [SupervisorController::class, 'supervisor_dashboard'])->name('supervisor');
+    Route::get('/supervisor', [SupervisorController::class, 'supervisor_dashboard'])->name('supervisor');
+    Route::prefix('supervisor/')->name('supervisor.')->group(function () {
         // Vendor Management
         Route::get('vendor/list', [VendorController::class, 'vandor_list'])->name('vendor.list');
         Route::get('vendor/add', [VendorController::class, 'vandor_add'])->name('vendor.add');
@@ -101,7 +102,7 @@ Route::middleware(['auth', 'role:3'])->group(function () {
 
 // QC Routes
 Route::middleware(['auth', 'role:4'])->group(function () {
-    Route::prefix('qc/')->name('qc.')->group(function () {
+    Route::prefix('/qc')->name('qc.')->group(function () {
         Route::get('/', [QcController::class, 'Qc_Dashboard'])->name('dashboard');
         // profile--------
         Route::get('profile', [QcController::class, 'qc_profile_edit'])->name('profile.edit');

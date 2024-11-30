@@ -13,7 +13,7 @@ use Hash;
 use Mail;
 use Str;
 
-class Admincontroller extends Controller
+class AdminController extends Controller
 {
     public function AdminDashboard()
     {

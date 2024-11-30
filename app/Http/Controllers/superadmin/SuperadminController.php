@@ -38,7 +38,7 @@ class SuperadminController extends Controller
         $data['roles'] = rolesModel::where('id', '!=', 0)->where('id', '!=', 1)->get();
         return view('superadmin.user.add', $data);
     }
-    public function superadmin_edit($id, Request $request)
+    public function superadmin_user_edit($id, Request $request)
     {
         $data['editUser'] = User::find($id);
         $data['roles'] = DB::table('role')->where('id', '!=', 0)->get();
