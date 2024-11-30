@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\qc\haccp_02_controller;
 use App\Http\Controllers\qc\haccp_03_controller;
 use App\Http\Controllers\Qc\QcController;
+use App\Http\Controllers\sqf\SQF01Controller;
 use App\Http\Controllers\sqf\sqf_01_controller;
 use App\Http\Controllers\sqf\sqf_02_controller;
 use App\Http\Controllers\sqf\sqf_03_controller;
@@ -33,8 +34,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'role:0'])->group(function () {
 
-    Route::get('/', [AdminController::class, 'AdminDashboard'])->name('superadmin');
     Route::prefix('superadmim/')->name('superadmim.')->group(function () {
+        Route::get('/', [AdminController::class, 'AdminDashboard'])->name('superadmin');
         // admin Management
         Route::get('user/list', [AdminController::class, 'Admin_user_list'])->name('user.list');
         Route::get('user/add', [AdminController::class, 'Admin_user_add'])->name('user.add');
@@ -71,8 +72,8 @@ Route::middleware(['auth', 'role:1'])->group(function () {
 
 // Plant Manager Routes
 Route::middleware(['auth', 'role:2'])->group(function () {
-    Route::prefix('/')->name('plantmanager.')->group(function () {
-        Route::get('plantmanager', [PlantManagerController::class, 'Plant_Manager_Dashboard'])->name('dashboard');
+    Route::prefix('plantmanager')->name('plantmanager.')->group(function () {
+        Route::get('/', [PlantManagerController::class, 'Plant_Manager_Dashboard'])->name('dashboard');
         // profile--------
         Route::get('profile', [PlantManagerController::class, 'plantmanager_profile'])->name('profile');
         Route::post('profile/update', [PlantManagerController::class, 'plantmanager_profile_update'])->name('update');
@@ -82,8 +83,8 @@ Route::middleware(['auth', 'role:2'])->group(function () {
 
 // Supervisor Routes
 Route::middleware(['auth', 'role:3'])->group(function () {
-    Route::get('supervisor', [SupervisorController::class, 'supervisor_dashboard'])->name('supervisor');
     Route::prefix('supervisor/')->name('admin.')->group(function () {
+        Route::get('/', [SupervisorController::class, 'supervisor_dashboard'])->name('supervisor');
         // Vendor Management
         Route::get('vendor/list', [VendorController::class, 'vandor_list'])->name('vendor.list');
         Route::get('vendor/add', [VendorController::class, 'vandor_add'])->name('vendor.add');
@@ -100,20 +101,24 @@ Route::middleware(['auth', 'role:3'])->group(function () {
 
 // QC Routes
 Route::middleware(['auth', 'role:4'])->group(function () {
-    Route::get('qc', [QcController::class, 'Qc_Dashboard'])->name('qc.Dashboard');
     Route::prefix('qc/')->name('qc.')->group(function () {
+        Route::get('/', [QcController::class, 'Qc_Dashboard'])->name('dashboard');
         // profile--------
         Route::get('profile', [QcController::class, 'qc_profile_edit'])->name('profile.edit');
         Route::post('profile/update', [QcController::class, 'qc_profile_update'])->name('profile.update');
         Route::post('password/change', [QcController::class, 'qc_user_password_change'])->name('password.change');
 
+        // sqf-------
+        Route::get('sqf/01', [SQF01Controller::class, 'index'])->name('sqf_1.add');
+        Route::post('sqf/01', [SQF01Controller::class, 'store'])->name('sqf_1.store');
+
+        Route::get('sqf/02', [sqf_02_controller::class, 'qc_sqf_02_add'])->name('sqf_2.add');
+        Route::get('sqf/03', [sqf_03_controller::class, 'qc_sqf_03_add'])->name('sqf_3.add');
+
         // haccp-------
         Route::get('haccp-01', [haccp_01_controller::class, 'qc_haccp_01_add'])->name('haccp.add');
         Route::get('haccp-02', [haccp_02_controller::class, 'qc_haccp_02_add'])->name('haccp_2.add');
         Route::get('haccp-03', [haccp_03_controller::class, 'qc_haccp_03_add'])->name('haccp_3.add');
-        Route::get('sqf-01', [sqf_01_controller::class, 'qc_sqf_01_add'])->name('sqf_1.add');
-        Route::get('sqf-02', [sqf_02_controller::class, 'qc_sqf_02_add'])->name('sqf_2.add');
-        Route::get('sqf-03', [sqf_03_controller::class, 'qc_sqf_03_add'])->name('sqf_3.add');
     });
 });
 

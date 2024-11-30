@@ -9,9 +9,9 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
-use Mail;
-use Str;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -40,12 +40,12 @@ class AuthenticatedSessionController extends Controller
         elseif ($request->user()->role == 1) {
             return redirect()->intended(route('admin.dashboard'));
         }
-        
+
          elseif ($request->user()->role == 2) {
             return redirect()->intended(route('plantmanager.dashboard'));
         }
          elseif ($request->user()->role == 4) {
-            return redirect()->intended(route('qc.Dashboard'));
+            return redirect()->intended(route('qc.dashboard'));
         }
          elseif ($request->user()->role == 3) {
             return redirect()->intended(route('supervisor'));
@@ -55,7 +55,7 @@ class AuthenticatedSessionController extends Controller
     }
 
 
-    
+
     public function verify($token)
     {
         $user = User::where('remember_token', '=', $token)->first();
@@ -121,7 +121,7 @@ class AuthenticatedSessionController extends Controller
         }
     }
 
-    
+
     /**
      * Destroy an authenticated session.
      */

@@ -15,9 +15,8 @@
            <!--navigation-->
            <ul class="metismenu" id="sidenav">
                <li>
-                   <a href="{{ url('qc/dashboard') }}">
-                       <div class="parent-icon"><i class="material-icons-outlined">home</i>
-                       </div>
+                   <a href="{{ route('qc.dashboard') }}">
+                       <div class="parent-icon"><i class="material-icons-outlined"></i></div>
                        <div class="menu-title">Dashboard</div>
                    </a>
                </li>
