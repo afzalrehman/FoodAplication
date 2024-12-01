@@ -21,27 +21,27 @@ class SuperadminController extends Controller
     public function superadmin_user_list(Request $request)
     {
         // Count users by role
-        // $data['admin_count'] = User::where('role', '1')->count();
+        $data['admin_count'] = User::where('role', '1')->count();
         $data['plantManager_count'] = User::where('role', '2')->count();
         $data['supervisor_count'] = User::where('role', '3')->count();
         $data['Qc_count'] = User::where('role', '4')->count();
-        $data['alluser_count'] = User::where('role', '!=', 0)->where('role', '!=', 1)->count();
+        $data['alluser_count'] = User::where('role', '!=', 0)->count();
 
         // Get filtered user data based on role, if any
-        $data['user'] = User::UserData($request);
+        $data['superadmin'] = User::superadmin($request);
 
         return view('superadmin.user.list', $data);
     }
 
     public function superadmin_user_add()
     {
-        $data['roles'] = rolesModel::where('id', '!=', 0)->where('id', '!=', 1)->get();
+        $data['roles'] = rolesModel::where('id', '!=', 0)->get();
         return view('superadmin.user.add', $data);
     }
     public function superadmin_user_edit($id, Request $request)
     {
         $data['editUser'] = User::find($id);
-        $data['roles'] = DB::table('role')->where('id', '!=', 0)->get();
+        $data['roles'] = DB::table('roles')->where('id', '!=', 0)->get();
         return view('superadmin.user.edit', $data);
     }
     public function superadmin_user_view($id, Request $request)
@@ -73,7 +73,7 @@ class SuperadminController extends Controller
         $user->remember_token = Str::random(50);
         $user->save();
         Mail::to($user->email)->send(new registerMail($user));
-        return redirect('admin/user/list')->with('success', 'User Successfuly add Please chack your email and verify email');
+        return redirect('superadmin/user/list')->with('success', 'User added successfully. Please verify your account with the link sent to your email address. If you cannot find the email, please check spam folder.');
 
 
     }
@@ -87,7 +87,6 @@ class SuperadminController extends Controller
             'phone' => 'required|string|unique:users,phone,' . $id,
             'email' => 'required|email|unique:users,email,' . $id,
             'role' => 'required|string',
-            'password' => 'required',
         ]);
 
 
@@ -146,7 +145,7 @@ class SuperadminController extends Controller
             'new_password' => 'required|confirmed|min:8',
         ]);
         if (Hash::check($request->current_password, $userProfile->password)) {
-           
+
 
             $userProfile->password = Hash::make($request->new_password);
             $userProfile->save();

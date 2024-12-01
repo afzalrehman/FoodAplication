@@ -19,5 +19,5 @@ Thank you for registering with us!
 We look forward to providing you with the best experience.
 
 Thanks,  
-**{{ config('app.name') }} Team**
+** Team QASIM App **
 @endcomponent

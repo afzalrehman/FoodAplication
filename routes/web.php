@@ -36,7 +36,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth', 'role:0'])->group(function () {
 
     Route::get('/', [SuperadminController::class, 'superadmin_Dashboard'])->name('superadmin');
-    Route::prefix('superadmim/')->name('superadmim.')->group(function () {
+    Route::prefix('superadmin/')->name('superadmin.')->group(function () {
         // admin Management
         Route::get('user/list', [SuperadminController::class, 'superadmin_user_list'])->name('user.list');
         Route::get('user/add', [SuperadminController::class, 'superadmin_user_add'])->name('user.add');
@@ -54,8 +54,8 @@ Route::middleware(['auth', 'role:0'])->group(function () {
 
 Route::middleware(['auth', 'role:1'])->group(function () {
 
+    Route::get('/admin', [AdminController::class, 'AdminDashboard'])->name('dashboard');
     Route::prefix('admin/')->name('admin.')->group(function () {
-        Route::get('/', [AdminController::class, 'AdminDashboard'])->name('dashboard');
         // admin Management
         Route::get('user/list', [AdminController::class, 'Admin_user_list'])->name('user.list');
         Route::get('user/add', [AdminController::class, 'Admin_user_add'])->name('user.add');

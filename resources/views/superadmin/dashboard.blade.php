@@ -1,4 +1,4 @@
-@extends('admin.admin_dashboard')
+@extends('superadmin.admin_dashboard')
 @section('content')
     <div class="main-content">
         <!--breadcrumb-->

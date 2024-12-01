@@ -1,4 +1,4 @@
-@extends('admin.admin_dashboard')
+@extends('superadmin.admin_dashboard')
 @section('content')
     <div class="main-content">
         <div class="card">
@@ -6,7 +6,7 @@
                 <h5 class="mb-0">User Update</h5>
             </div>
             <div class="card-body p-4">
-                <form class="row g-3 " action="{{url('admin/user/update/'.$editUser->id)}}" method="POST">
+                <form class="row g-3 " action="{{url('superadmin/user/update/'.$editUser->id)}}" method="POST">
                     @csrf
                     <div class="col-md-6">
                         <label for="employeeID" class="form-label">Employee ID</label>
@@ -46,7 +46,7 @@
                         <select id="position" name="role" class="form-select" required="">
                             <option selected="" disabled="" value="">Select Position</option>
                             @foreach ($roles as $item)
-                            <option {{($item->id == $editUser->id ? 'selected': '')}} value="{{$item->id}}">{{$item->name}}</option>
+                            <option {{($item->id == $editUser->role ? 'selected': '')}} value="{{$item->id}}">{{$item->name}}</option>
                             @endforeach
                         </select>
                         <span class="" style="color: red">{{$errors->first('role')}}</span>
@@ -65,7 +65,7 @@
                     <div class="col-md-12">
                         <div class="d-md-flex d-grid align-items-center gap-3">
                             <button type="submit" class="btn btn-primary px-4">Update</button>
-                            <a href="{{url('admin/user/list')}}" class="btn btn-danger px-4">Back</a>
+                            <a href="{{url('superadmin/user/list')}}" class="btn btn-danger px-4">Back</a>
                         </div>
                     </div>
 

@@ -140,7 +140,7 @@
         </li>
     
         <li>
-          <a href="{{url('admin/user/list')}}">
+          <a href="{{url('superadmin/user/list')}}">
             <div class="parent-icon"><i class="material-icons-outlined">person</i></div>
             <div class="menu-title">User</div>
           </a>
