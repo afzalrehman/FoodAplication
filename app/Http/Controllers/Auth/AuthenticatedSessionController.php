@@ -35,20 +35,20 @@ class AuthenticatedSessionController extends Controller
 
 
         if ($request->user()->role == 0) {
-            return redirect()->intended(route('superadmin'));
+            return redirect()->route('superadmin');
         }
         elseif ($request->user()->role == 1) {
-            return redirect()->intended(route('admin'));
+            return redirect()->route('admin');
         }
 
          elseif ($request->user()->role == 2) {
-            return redirect()->intended(route('plantmanager.dashboard'));
+            return redirect()->route('plantmanager.dashboard');
         }
          elseif ($request->user()->role == 4) {
-            return redirect()->intended(route('qc.dashboard'));
+            return redirect()->route('qc.dashboard');
         }
          elseif ($request->user()->role == 3) {
-            return redirect()->intended(route('supervisor'));
+            return redirect()->route('supervisor');
         }else{
             return redirect()->intended(route('login', absolute: false));
         }

@@ -97,7 +97,7 @@ Route::middleware(['auth', 'role:3'])->group(function () {
         // profile--------
         Route::get('profile', [SupervisorController::class, 'supervisor_profile_edit'])->name('profile.edit');
         Route::post('profile/update', [SupervisorController::class, 'supervisor_profile_update']);
-        Route::post('user/password/change', [SupervisorController::class, 'supervisor_user_password_change']);
+        // Route::post('user/password/change', [SupervisorController::class, 'supervisor_user_password_change']);
     });
 });
 
@@ -108,7 +108,7 @@ Route::middleware(['auth', 'role:4'])->group(function () {
         // profile--------
         Route::get('profile', [QcController::class, 'qc_profile_edit'])->name('profile.edit');
         Route::post('profile/update', [QcController::class, 'qc_profile_update'])->name('profile.update');
-        Route::post('password/change', [QcController::class, 'qc_user_password_change'])->name('password.change');
+        // Route::post('password/change', [QcController::class, 'qc_user_password_change'])->name('password.change');
 
         // ------------ sqf_01 ------------
         Route::get('sqf/01', [SQF01Controller::class, 'index'])->name('sqf_1.index');

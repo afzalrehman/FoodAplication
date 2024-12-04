@@ -48,19 +48,19 @@
                             </div>
 
                         </div>
-                        <form class="row g-3 " action="{{ url('profile/update') }}" enctype="multipart/form-data"
+                        <form class="row g-3 " action="{{ url('supervisor/profile/update') }}" enctype="multipart/form-data"
                             method="POST">
                             @csrf
                             <div class="col-md-6">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" name="name" id="name"
+                                <input type="text" readonly class="form-control" name="name" id="name"
                                     value="{{ $user_profile->name }}" placeholder="Name" required="">
                                 <span class="" style="color: red">{{ $errors->first('name') }}</span>
 
                             </div>
                             <div class="col-md-6">
                                 <label for="username" class="form-label">Username</label>
-                                <input type="text" class="form-control" name="username"
+                                <input type="text" readonly class="form-control" name="username"
                                     value="{{ $user_profile->username }}" id="username" placeholder="Username"
                                     required="">
                                 <span class="" style="color: red">{{ $errors->first('username') }}</span>
@@ -134,7 +134,7 @@
 
             </div>
         </div><!--end row-->
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-12 col-xl-12">
                 <div class="card rounded-4 border-top border-4 border-primary border-gradient-1">
                     <div class="card-body p-4">
@@ -196,7 +196,7 @@
                 </div>
             </div>
 
-        </div><!--end row-->
+        </div><!--end row--> --}}
 
 
 
