@@ -74,7 +74,7 @@ class AdminController extends Controller
         $user->remember_token = Str::random(50);
         $user->save();
         Mail::to($user->email)->send(new registerMail($user));
-        return redirect('admin/user/list')->with('success', 'User Successfuly add Please chack your email and verify email');
+        return redirect('admin/user/list')->with('success', 'User added successfully. Please verify your account with the link sent to your email address. If you cannot find the email, please check spam folder.');
 
 
     }

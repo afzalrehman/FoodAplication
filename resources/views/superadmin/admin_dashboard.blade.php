@@ -40,8 +40,8 @@
 
 <body>
 
-    @include('admin.body.header')
-    @include('admin.body.sidebar')
+    @include('superadmin.body.header')
+    @include('superadmin.body.sidebar')
     <!--start main wrapper-->
     <main class="main-wrapper">
         @yield('content')
@@ -52,7 +52,7 @@
     <div class="overlay btn-toggle"></div>
     <!--end overlay-->
 
-    @include('admin.body.footer')
+    @include('superadmin.body.footer')
 
 
     <!--start switcher-->

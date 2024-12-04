@@ -47,6 +47,26 @@ class User extends Authenticatable
         ];
     }
 
+    public static function superadmin($request)
+    {
+        $return = self::select('users.*')->where('role', '!=', 0)->orderBy('id', 'DESC');
+        
+        // Check if the 'role' parameter exists in the request
+        if (!empty($request->has('role')) && $request->role != 'all') {
+         $return =   $return->where('role', $request->role);
+        }
+        elseif (!empty($request->get('search')) ) {
+         $return =   $return->where('users.name', 'like', '%' . $request->get('search') .'%')
+         ->orWhere('users.username', 'like', '%' . $request->get('search') .'%')
+         ->orWhere('users.phone', 'like', '%' . $request->get('search') .'%')
+         ->orWhere('users.employeeID', 'like', '%' . $request->get('search') .'%')
+         ->orWhere('users.email', 'like', '%' . $request->get('search') .'%')
+         ->orWhere('users.role', 'like', '%' . $request->get('search') .'%')
+         ->orWhere('users.status', 'like', '%' . $request->get('search') .'%');
+        }
+        
+        return $return->where('role', '!=', 0)->paginate(10);
+    }
     public static function UserData($request)
     {
         $return = self::select('users.*')->where('role', '!=', 0)->where('role', '!=', 1)->orderBy('id', 'DESC');

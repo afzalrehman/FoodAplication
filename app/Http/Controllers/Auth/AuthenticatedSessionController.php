@@ -38,7 +38,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended(route('superadmin'));
         }
         elseif ($request->user()->role == 1) {
-            return redirect()->intended(route('admin.dashboard'));
+            return redirect()->intended(route('admin'));
         }
 
          elseif ($request->user()->role == 2) {
@@ -64,7 +64,7 @@ class AuthenticatedSessionController extends Controller
             $user->remember_token = Str::random(50);
             $user->status = 'active';
             $user->save();
-            return redirect('/login')->with('success', 'Your Account  successfully verified ');
+            return redirect('/login')->with('success', 'Email Verification Successfully ');
         } else {
             abort(404);
         }

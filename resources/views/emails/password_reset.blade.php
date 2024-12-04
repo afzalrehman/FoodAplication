@@ -12,5 +12,5 @@ Reset your password
 
 <p>In case you have any issues recovering your password , please contact us</p>
 Thanks,<br>
-{{ config('app.name') }}
+Team QASIM App
 @endcomponent

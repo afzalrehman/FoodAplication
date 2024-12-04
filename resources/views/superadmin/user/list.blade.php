@@ -1,13 +1,13 @@
-@extends('admin.admin_dashboard')
+@extends('superadmin.admin_dashboard')
 @section('content')
     <div class="main-content">
 
         <form action="" method="GET">
             <div class="product-count d-flex align-items-center gap-3 gap-lg-4 mb-4 fw-medium flex-wrap font-text1">
-                <a href="{{ url('admin/user/list') }}"><span class="me-1">All</span><span
+                <a href="{{ url('superadmin/user/list') }}"><span class="me-1">All</span><span
                         class="text-secondary">({{ $alluser_count }})</span></a>
-                {{-- <a href="?role=admin"><span class="me-1">Admin</span><span
-                        class="text-secondary">({{ $admin_count }})</span></a> --}}
+                <a href="?role=admin"><span class="me-1">Admin</span><span
+                        class="text-secondary">({{ $admin_count }})</span></a>
                 <a href="?role=plant_manager"><span class="me-1">Plant Manager</span><span
                         class="text-secondary">({{ $plantManager_count }})</span></a>
                 <a href="?role=qc"><span class="me-1">QC</span><span
@@ -38,7 +38,7 @@
                 <div class="col-auto">
                     <div class="d-flex align-items-center gap-2 justify-content-lg-end">
                         <button class="btn btn-filter px-4"><i class="bi bi-box-arrow-right me-2"></i>Export</button>
-                        <a href="{{ url('admin/user/add') }}" class="btn  px-4"
+                        <a href="{{ url('superadmin/user/add') }}" class="btn  px-4"
                             style="background-color: #034EA2; color: white;"><i class="bi bi-plus-lg me-2"></i>Add Users</a>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                             </thead>
                             <tbody>
 
-                                @foreach ($user as $item)
+                                @foreach ($superadmin as $item)
                                     <tr>
                                         <td>
                                             <input class="form-check-input" type="checkbox">
@@ -107,9 +107,9 @@
                                             {{ $item->status }}
                                         </td>
                                         <td width="100px">
-                                            <a class="" href="{{ url('admin/user/view/' . $item->id) }}"><i
+                                            <a class="" href="{{ url('superadmin/user/view/' . $item->id) }}"><i
                                                     class="bi bi-eye-fill me-2"></i></a>
-                                            <a class="" href="{{ url('admin/user/edit/' . $item->id) }}"><i
+                                            <a class="" href="{{ url('superadmin/user/edit/' . $item->id) }}"><i
                                                     class="bi bi-box-arrow-right me-2"></i></a>
                                             <a data-bs-toggle="modal" data-bs-target="#BasicModal" class=" text-danger"
                                                 href="javascript:;"><i class="bi bi-trash-fill me-2"></i></a>
@@ -131,7 +131,7 @@
                                                 </div>
                                                 <div class="modal-body"> Are you sure you want to delete?</div>
                                                 <div class="modal-footer border-top-0">
-                                                    <a href="{{ url('admin/user/delete/' . $item->id) }}"
+                                                    <a href="{{ url('superadmin/user/delete/' . $item->id) }}"
                                                         class="btn btn-danger">Delete</a>
 
                                                     <a href="javascript:;" class="btn btn-info"
@@ -146,7 +146,7 @@
                         </table>
                         <div style="float: right">
 
-                            {{ $user->links() }}
+                            {{ $superadmin->links() }}
                         </div>
                     </div>
                 </div>
