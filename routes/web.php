@@ -9,7 +9,7 @@ use App\Http\Controllers\Plantmanager\PlantManagerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\qc\haccp_02_controller;
 use App\Http\Controllers\qc\haccp_03_controller;
-use App\Http\Controllers\Qc\QcController;
+use App\Http\Controllers\qc\QcController;
 use App\Http\Controllers\sqf\SQF03Controller;
 use App\Http\Controllers\sqf\SQF01Controller;
 use App\Http\Controllers\sqf\SQF02COntroller;
