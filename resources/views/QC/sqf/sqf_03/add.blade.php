@@ -1,23 +1,18 @@
 @extends('QC.admin_dashboard')
 @section('content')
-<div class="main-content">
-    <div class="card">
-        <div class="card-header px-4 py-3">
-            <h5 class="mb-0">SQF 03</h5>
-        </div>
-    <form method="POST" action="{{ route('qc.sqf_3.store') }}" class="row g-3 needs-validation" novalidate
-        enctype="multipart/form-data">
-        @csrf
-        <div class="main-content">
-            <!-- PRE-OP/OPERATIONAL INSPECTION CONTINUOUS COMMENT SHEET -->
-            <div class="card mb-5 shadow-sm">
-                <div class="card-header bg-primary ">
-                    <h4 class="mb-0 text-white">PRE-OP/OPERATIONAL INSPECTION CONTINUOUS COMMENT SHEET
-                        <p class="mb-0 fs-6 fw-normal">C.W.S.R.- Cleaned, washed, sanitized, and re-inspected prior
-                            to production.</p>
-                    </h4>
-                </div>
-                <div class="card-body">
+    <div class="main-content">
+        <!-- PRE-OP/OPERATIONAL INSPECTION CONTINUOUS COMMENT SHEET -->
+        <div class="card mb-5 shadow-sm">
+            <div class="card-header bg-primary ">
+                <h4 class="mb-0 text-white">PRE-OP/OPERATIONAL INSPECTION CONTINUOUS COMMENT SHEET
+                    <p class="mb-0 fs-6 fw-normal">C.W.S.R.- Cleaned, washed, sanitized, and re-inspected prior
+                        to production.</p>
+                </h4>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ route('qc.sqf_3.store') }}" class="row g-3 needs-validation" novalidate
+                    enctype="multipart/form-data">
+                    @csrf
                     <div class="px-4 g-3 mt-0 row justify-content-between">
 
                         <div class="col-xl-6">
@@ -87,14 +82,10 @@
                             </button>
                         </div>
                     </div>
-
-                </div>
+                </form>
             </div>
         </div>
-    </form>
-</div>
-</div>
-</div>
+    </div>
 @endsection
 @section('script')
     <script>
@@ -113,6 +104,4 @@
     </script>
 
     <script src="{{ asset('assets/plugins/select2/js/qc-customs.js') }}"></script>
-
-
 @endsection
