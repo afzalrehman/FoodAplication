@@ -1,9 +1,31 @@
+
+
 @if ($message = Session::get('success'))
-    <div class="alert alert-primary border-0 bg-primary alert-dismissible fade show">
-        <div class="text-white">{{ $message }}</div>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (!window.hasShownSuccessMessage) {
+                window.hasShownSuccessMessage = true; // Prevent multiple executions
+                function round_success(msg) {
+                    Lobibox.notify('success', {
+                        pauseDelayOnHover: true,
+                        size: 'mini',
+                        rounded: true,
+                        icon: 'bi bi-check2-circle',
+                        delayIndicator: false,
+                        continueDelayOnInactiveTab: false,
+                        position: 'top right',
+                        msg: msg
+                    });
+                }
+
+                // Call the notification function with the success message
+                round_success("{{ $message }}");
+            }
+        });
+    </script>
 @endif
+
+
 
 
 @if ($message = Session::get('error'))

@@ -1,10 +1,15 @@
-@extends('qc.admin_dashboard')
+@extends('QC.admin_dashboard')
 @section('content')
     <form method="POST" action="{{ route('qc.sqf_1.store') }}" class="row g-3 needs-validation" novalidate
         enctype="multipart/form-data">
         @csrf
         <div class="main-content">
-            @include('_message')
+            <div class="product-count d-flex align-items-center gap-3 gap-lg-4 mb-4 fw-medium flex-wrap font-text1">
+                {{--  <a href=""><span class="me-1">Dashboard</span><span class="text-secondary"></span></a>  --}}
+                <a href="{{ route('qc.sqf_1.index') }}"><span>SQF 01</span><span class="text-secondary"></span></a>
+                <a href="#"><span>Add</span><span class="text-secondary"></span></a>
+            </div>
+
             <div class="row">
                 <!-- ------col-lg-12------- -->
                 <div class="col-xl-12">
@@ -13,15 +18,29 @@
                             <h5>PRE-OPERATIONAL INSPECTION FORM</h5>
                         </div>
                         <div class="card-body p-0">
-                            <div class="px-4 g-4 mt-0 row justify-content-between">
+                            <div class="px-4 g-3 mt-0 row justify-content-between">
+                                <div class="col-xl-6">
+                                    <div class="custom-checkbox">
+                                        <label for="person_perfo_check" class="form-label">Person Performing Check<span
+                                                class="text-danger">*</span>
+                                        </label>
+                                        <select class="form-select" id="person_perfo_check" name="person_perfo_check"
+                                            required>
+                                            data-placeholder="--- Select Plant Manager ---">
+                                            <option value="" selected disabled>--- Select Plant Manager ---</option>
+                                            @foreach ($plantManagerRecord as $plantManager)
+                                                <option value="{{ $plantManager->username }}">{{ $plantManager->username }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <div class="col-xl-6 ">
                                     <label class="form-label">Date
                                         <span class="text-danger">*</span>
                                     </label>
                                     <input type="text" class="form-control datepicker" name="date" required>
-                                    <div class="invalid-feedback">
-                                        Please choose a username.
-                                    </div>
                                 </div>
 
                                 <div class="col-xl-6">
@@ -116,12 +135,13 @@
 
                                 <div class="col-xl-6">
                                     <div class=" custom-checkbox">
-                                        <label for="kill_room_knives" class="form-label">7. Kill room knives, cones, tables,
+                                        <label for="kill_room_knives" class="form-label">7. Kill room knives, cones,
+                                            tables,
                                             conveyor
                                             <span class="text-danger">*</span>
                                         </label>
-                                        <select class="form-select" id="kill_room_knives" name="kill_room_knives" required
-                                            data-placeholder="--- Yes or No ---">
+                                        <select class="form-select" id="kill_room_knives" name="kill_room_knives"
+                                            required data-placeholder="--- Yes or No ---">
                                             <option value="" selected disabled>--- Yes or No ---</option>
                                             <option value="Yes">Yes</option>
                                             <option value="No">No</option>
@@ -463,214 +483,6 @@
             enableTime: true,
             dateFormat: "Y-m-d H:i",
         });
-
-
-
-
-
-        {{--  selected2  --}}
-        $(function() {
-            "use strict";
-
-            $('#no_condensation').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#no_rodent').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#handwash_station').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#inedible_room').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#receiving_area').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#killing_area_walls').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#kill_room_knives').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#kill_room_product').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#picking_area_walls').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#picking_area_picker').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#scald_vat').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#evisceration_table').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#evisceration_walls').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#giblet_table').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#chill_tanks').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#scale_shovels').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#ice_machines').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#hand_trucks').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#packing_area_walls').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#packing_scales').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#coolers_freezer').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#all_contact_surfaces').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#cooler_temp').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#cooler_2_temp').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#freezer_temp').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#paa_concentration').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#no_rodent_droppings').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-            $('#others').select2({
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
-                placeholder: $(this).data('placeholder'),
-            });
-
-
-
-
-        });
     </script>
+    <script src="{{ asset('assets/plugins/select2/js/qc-customs.js') }}"></script>
 @endsection

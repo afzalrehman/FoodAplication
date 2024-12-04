@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('person_perform')->nullable();
             $table->string('person_perfo_check')->nullable();
+            $table->enum('person_perfo_approve', ['Progress', 'Verify', 'Unverify', 'Rejected'])->default('Progress')->nullable();
             $table->string('time_of_check')->nullable();
+            $table->string('comments')->nullable();
             $table->date('date')->nullable();
             $table->string('no_condensation')->nullable();
             $table->string('no_rodent')->nullable();

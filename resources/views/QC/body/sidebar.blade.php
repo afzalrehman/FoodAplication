@@ -59,15 +59,15 @@
                            </a>
                            <ul>
                                <li>
-                                   <a href="{{route('qc.sqf_1.add')}}"><i
+                                   <a href="{{route('qc.sqf_1.index')}}"><i
                                            class="material-icons-outlined">insert_drive_file</i>SQF 01</a>
                                </li>
                                <li>
-                                   <a href="{{route('qc.sqf_2.add')}}"><i
+                                   <a href="{{route('qc.sqf_2.index')}}"><i
                                            class="material-icons-outlined">insert_drive_file</i>SQF 02</a>
                                </li>
                                <li>
-                                   <a href="{{route('qc.sqf_3.add')}}"><i
+                                   <a href="{{route('qc.sqf_3.index')}}"><i
                                            class="material-icons-outlined">insert_drive_file</i>SQF 03</a>
                                </li>
 
