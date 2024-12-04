@@ -1,5 +1,10 @@
 @extends('QC.admin_dashboard')
 @section('content')
+<div class="main-content">
+    <div class="card">
+        <div class="card-header px-4 py-3">
+            <h5 class="mb-0">SQF 02</h5>
+        </div>
     <form method="POST" action="{{ route('qc.sqf_2.store') }}" class="row g-3 needs-validation" novalidate
         enctype="multipart/form-data">
         @csrf
@@ -218,6 +223,9 @@
         </div>
         <!-- [ Main Content ] end -->
     </form>
+</div>
+</div>
+</div>
 @endsection
 @section('script')
     <script>
