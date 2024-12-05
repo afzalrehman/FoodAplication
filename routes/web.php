@@ -5,7 +5,7 @@ use App\Http\Controllers\haccp\HACCP01Controller;
 use App\Http\Controllers\haccp\HACCP02Controller;
 use App\Http\Controllers\haccp\HACCP03Controller;
 use App\Http\Controllers\qc\haccp_01_controller;
-use App\Http\Controllers\Plantmanager\PlantManagerController;
+use App\Http\Controllers\plantmanager\PlantManagerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\qc\haccp_02_controller;
 use App\Http\Controllers\qc\haccp_03_controller;
