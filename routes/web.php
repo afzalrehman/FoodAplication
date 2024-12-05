@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\haccp\HACCP01Controller;
 use App\Http\Controllers\haccp\HACCP02Controller;
 use App\Http\Controllers\haccp\HACCP03Controller;
@@ -56,7 +56,7 @@ Route::middleware(['auth', 'role:0'])->group(function () {
 
 Route::middleware(['auth', 'role:1'])->group(function () {
 
-    Route::get('/admin', [AdminController::class, 'AdminDashboard'])->name('dashboard');
+    Route::get('/admin', [AdminController::class, 'AdminDashboard'])->name('admin');
     Route::prefix('admin/')->name('admin.')->group(function () {
         // admin Management
         Route::get('user/list', [AdminController::class, 'Admin_user_list'])->name('user.list');
