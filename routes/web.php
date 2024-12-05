@@ -147,7 +147,7 @@ Route::middleware(['auth', 'role:4'])->group(function () {
         Route::post('haccp/01/edit/{id}', [HACCP01Controller::class, 'update'])->name('haccp_1.update');
         Route::delete('haccp/01/destroy/{id}', [HACCP01Controller::class, 'destroy'])->name('haccp_1.destroy');
 
-        Route::get('haccp/01', [haccp_01_controller::class, 'qc_haccp_01_add'])->name('haccp.add');
+        // Route::get('haccp/01', [haccp_01_controller::class, 'qc_haccp_01_add'])->name('haccp.add');
 
         // ------------ haccp_0 ------------
         Route::get('haccp/02', [HACCP02Controller::class, 'index'])->name('haccp_2.index');
@@ -158,7 +158,7 @@ Route::middleware(['auth', 'role:4'])->group(function () {
         Route::post('haccp/02/edit/{id}', [HACCP02Controller::class, 'update'])->name('haccp_2.update');
         Route::delete('haccp/02/destroy/{id}', [HACCP02Controller::class, 'destroy'])->name('haccp_2.destroy');
 
-        Route::get('haccp-02', [haccp_02_controller::class, 'qc_haccp_02_add'])->name('haccp_2.add');
+        // Route::get('haccp-02', [haccp_02_controller::class, 'qc_haccp_02_add'])->name('haccp_2.add');
 
         // ------------ haccp_03 ------------
         Route::get('haccp/03', [HACCP03Controller::class, 'index'])->name('haccp_3.index');

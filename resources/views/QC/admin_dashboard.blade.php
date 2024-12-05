@@ -42,6 +42,14 @@
             'qc.sqf_3.add',
             'qc.sqf_3.edit',
             'qc.sqf_3.show',
+            'qc.haccp_1.index',
+            'qc.haccp_1.add',
+            'qc.haccp_1.edit',
+            'qc.haccp_1.show',
+            'qc.haccp_2.index',
+            'qc.haccp_2.add',
+            'qc.haccp_2.edit',
+            'qc.haccp_2.show',
         ]))
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
         <link rel="stylesheet"
@@ -52,6 +60,7 @@
 
 
 </head>
+@yield('customs_styles')
 
 <body>
 
@@ -109,6 +118,14 @@
             'qc.sqf_3.add',
             'qc.sqf_3.edit',
             'qc.sqf_3.show',
+            'qc.haccp_1.index',
+            'qc.haccp_1.add',
+            'qc.haccp_1.edit',
+            'qc.haccp_1.show',
+            'qc.haccp_2.index',
+            'qc.haccp_2.add',
+            'qc.haccp_2.edit',
+            'qc.haccp_2.show',
         ]))
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script src="{{ asset('assets/plugins/select2/js/select2-custom.js') }}"></script>
@@ -119,7 +136,7 @@
         <script src="{{ asset('assets/plugins/validation/validation-script.js') }}"></script>
         <script>
             // Example starter JavaScript for disabling form submissions if there are invalid fields
-            (function() {
+            {{--  (function() {
                 'use strict'
 
                 // Fetch all the forms we want to apply custom Bootstrap validation styles to
@@ -137,7 +154,30 @@
                             form.classList.add('was-validated')
                         }, false)
                     })
-            })()
+            })()  --}}
+
+                // Custom Bootstrap Validation
+                (function() {
+                    "use strict";
+
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    var forms = document.querySelectorAll(".needs-validation");
+
+                    // Loop over them and prevent submission
+                    Array.prototype.slice.call(forms).forEach(function(form) {
+                        form.addEventListener(
+                            "submit",
+                            function(event) {
+                                if (!form.checkValidity()) {
+                                    event.preventDefault();
+                                    event.stopPropagation();
+                                }
+                                form.classList.add("was-validated");
+                            },
+                            false
+                        );
+                    });
+                })();
         </script>
     @endif
 
