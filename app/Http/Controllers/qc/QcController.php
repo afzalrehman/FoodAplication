@@ -18,7 +18,7 @@ class QcController extends Controller
     public function qc_profile_edit(Request $request)
     {
         $data['user_profile'] = User::where('id', '=', Auth::user()->id)->first();
-        return view('qc.profile', $data);
+        return view('QC.profile', $data);
     }
 
     public function qc_profile_update(Request $request)
