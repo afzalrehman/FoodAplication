@@ -37,6 +37,21 @@
               </li>
             </ul>
           </li>
+          <li>
+            <a href="javascript:;" class="has-arrow">
+              <div class="parent-icon"><i class="material-icons-outlined">widgets</i>
+              </div>
+              <div class="menu-title">Form</div>
+            </a>
+            <ul>
+              {{-- <li><a href="{{url('supervisor/vendor/add')}}"><i class="material-icons-outlined">arrow_right</i>Add Form</a> --}}
+              </li>
+              <li><a href="#"><i class="material-icons-outlined">arrow_right</i>Form</a>
+              </li>
+              <li><a href="#"><i class="material-icons-outlined">arrow_right</i>Form</a>
+              </li>
+            </ul>
+          </li>
 
       
           <li>
