@@ -119,11 +119,11 @@
 
 
                                <li>
-                                   <a href="{{ url('qc/haccp-01') }}"><i
+                                   <a href="{{ route('qc.haccp_1.index') }}"><i
                                            class="material-icons-outlined">insert_drive_file</i>HACCP-01</a>
                                </li>
                                <li>
-                                   <a href="{{ route('qc.haccp_2.add') }}"><i
+                                   <a href="{{ route('qc.haccp_2.index') }}"><i
                                            class="material-icons-outlined">insert_drive_file</i>HACCP-02</a>
                                </li>
                                <li>

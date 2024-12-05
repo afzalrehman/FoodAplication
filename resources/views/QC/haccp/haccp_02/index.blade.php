@@ -32,8 +32,8 @@
                 <div class="col-auto">
                     <div class="d-flex align-items-center gap-2 justify-content-lg-end">
                         <button class="btn btn-filter px-4"><i class="bi bi-box-arrow-right me-2"></i>Export</button>
-                        <a href="{{ route('qc.haccp_1.add') }}" class="btn  px-4"
-                            style="background-color: #034EA2; color: white;"><i class="bi bi-plus-lg me-2"></i>Add HACCP 01</a>
+                        <a href="{{ route('qc.haccp_2.add') }}" class="btn  px-4"
+                            style="background-color: #034EA2; color: white;"><i class="bi bi-plus-lg me-2"></i>Add HACCP 02</a>
                     </div>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                             </thead>
                             <tbody>
 
-                                @foreach ($haccp01Record as $item)
+                                @foreach ($haccp02Record as $item)
                                     <tr class="text-center">
                                         <td>
                                             <input class="form-check-input" type="checkbox">
@@ -87,10 +87,10 @@
                                             {{ $item->date }}
                                         </td>
                                         <td width="100px">
-                                            <a class="" href="{{ route('qc.haccp_1.show', $item->id) }}">
+                                            <a class="" href="{{ route('qc.haccp_2.show', $item->id) }}">
                                                 <i class="bi bi-eye-fill me-2"></i>
                                             </a>
-                                            <a class="" href="{{ route('qc.haccp_1.edit', $item->id) }}">
+                                            <a class="" href="{{ route('qc.haccp_2.edit', $item->id) }}">
                                                 <i class="bi bi-box-arrow-right me-2"></i>
                                             </a>
                                             <a data-bs-toggle="modal" data-bs-target="#deleteModal{{ $item->id }}" class="text-danger" href="javascript:;">
@@ -112,7 +112,7 @@
                                                 </div>
                                                 <div class="modal-body">Are you sure you want to delete this item?</div>
                                                 <div class="modal-footer border-top-0">
-                                                    <form action="{{ route('qc.haccp_1.destroy', $item->id) }}" method="POST">
+                                                    <form action="{{ route('qc.haccp_2.destroy', $item->id) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger">Delete</button>
@@ -130,25 +130,25 @@
                     </div>
 
 
-                    @if ($haccp01Record->lastPage() > 1)
+                    @if ($haccp02Record->lastPage() > 1)
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-end mt-3">
                                 {{-- Previous Page Link --}}
-                                <li class="page-item {{ $haccp01Record->onFirstPage() ? 'disabled' : '' }}">
-                                    <a class="page-link" href="{{ $haccp01Record->previousPageUrl() ?? 'javascript:;' }}"
+                                <li class="page-item {{ $haccp02Record->onFirstPage() ? 'disabled' : '' }}">
+                                    <a class="page-link" href="{{ $haccp02Record->previousPageUrl() ?? 'javascript:;' }}"
                                         tabindex="-1">Previous</a>
                                 </li>
 
                                 {{-- Pagination Links --}}
-                                @for ($i = 1; $i <= $haccp01Record->lastPage(); $i++)
-                                    <li class="page-item {{ $haccp01Record->currentPage() == $i ? 'active' : '' }}">
-                                        <a class="page-link" href="{{ $haccp01Record->url($i) }}">{{ $i }}</a>
+                                @for ($i = 1; $i <= $haccp02Record->lastPage(); $i++)
+                                    <li class="page-item {{ $haccp02Record->currentPage() == $i ? 'active' : '' }}">
+                                        <a class="page-link" href="{{ $haccp02Record->url($i) }}">{{ $i }}</a>
                                     </li>
                                 @endfor
 
                                 {{-- Next Page Link --}}
-                                <li class="page-item {{ !$haccp01Record->hasMorePages() ? 'disabled' : '' }}">
-                                    <a class="page-link" href="{{ $haccp01Record->nextPageUrl() ?? 'javascript:;' }}">Next</a>
+                                <li class="page-item {{ !$haccp02Record->hasMorePages() ? 'disabled' : '' }}">
+                                    <a class="page-link" href="{{ $haccp02Record->nextPageUrl() ?? 'javascript:;' }}">Next</a>
                                 </li>
                             </ul>
                         </nav>
