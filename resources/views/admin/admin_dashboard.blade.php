@@ -191,7 +191,7 @@
       cluster: 'ap1'
     });
 
-    var channel = pusher.subscribe('private-notification');
+    var channel = pusher.subscribe('notification');
     channel.bind('test.notification', function(data) {
       alert(JSON.stringify(data));
     });
