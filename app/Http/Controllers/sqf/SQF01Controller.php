@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\sqf;
 
+use App\Events\QcPostNotification;
 use App\Http\Controllers\Controller;
 use App\Models\SQFOneModel;
 use App\Models\User;
@@ -72,6 +73,7 @@ class SQF01Controller extends Controller
         }
 
         if ($data->save()) {
+            event(new QcPostNotification($data));
             return redirect()->route('qc.sqf_1.index')->with('success', 'Data saved successfully');
         } else {
             return redirect()->back()->withErrors('Failed to delete the item. Please try again.');
