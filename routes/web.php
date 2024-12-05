@@ -16,7 +16,7 @@ use App\Http\Controllers\sqf\SQF02COntroller;
 use App\Http\Controllers\superadmin\SuperadminController;
 use App\Http\Controllers\supervisor\SupervisorController;
 use App\Http\Controllers\supervisorVendorController;
-use App\Http\Controllers\Supervisor\VendorController;
+use App\Http\Controllers\supervisor\VendorController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
