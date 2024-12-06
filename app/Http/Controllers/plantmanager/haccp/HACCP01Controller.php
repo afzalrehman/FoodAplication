@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\haccp;
+namespace App\Http\Controllers\plantmanager\haccp;
 
 use App\Http\Controllers\Controller;
 use App\Models\CCP1Model;
@@ -21,7 +21,7 @@ class HACCP01Controller extends Controller
     public function index()
     {
         $data['haccp01Record'] = HACCPOneModel::getAllRecord();
-        return view('QC.haccp.haccp_01.index', $data);
+        return view('plant_manager.haccp.haccp_01.index', $data);
     }
 
     /**
@@ -30,7 +30,7 @@ class HACCP01Controller extends Controller
     public function create()
     {
         $data['plantManagerRecord'] = User::where('role', '=', '2')->get();
-        return view('QC.haccp.haccp_01.add', $data);
+        return view('plant_manager.haccp.haccp_01.add', $data);
     }
 
     /**
@@ -130,7 +130,7 @@ class HACCP01Controller extends Controller
         $data->ccp5_id = $ccp5_id;
 
         if ($data->save()) {
-            return redirect()->route('qc.haccp_1.index')->with('success', 'Data saved successfully');
+            return redirect()->route('plantmanager.haccp_1.index')->with('success', 'Data saved successfully');
         } else {
             return redirect()->back()->withErrors('Failed to save the data. Please try again.');
         }
@@ -160,7 +160,7 @@ class HACCP01Controller extends Controller
         $ccp5 = $data['haccp01Record']->ccp5_ID;
         $data['ccp5Record'] = CCP5Model::find($ccp5);
 
-        return view('QC.haccp.haccp_01.view', $data);
+        return view('plant_manager.haccp.haccp_01.view', $data);
     }
 
     /**
@@ -186,7 +186,7 @@ class HACCP01Controller extends Controller
         $ccp5 = $data['haccp01Record']->ccp5_ID;
         $data['ccp5Record'] = CCP5Model::find($ccp5);
 
-        return view('QC.haccp.haccp_01.edit', $data);
+        return view('plant_manager.haccp.haccp_01.edit', $data);
     }
 
     /**
@@ -283,11 +283,11 @@ class HACCP01Controller extends Controller
         $data5->save();
 
         if (!$data) {
-            return redirect()->route('qc.haccp_1.index')->withErrors('Item not found.');
+            return redirect()->route('plantmanager.haccp_1.index')->withErrors('Item not found.');
         }
 
         if ($data->save()) {
-            return redirect()->route('qc.haccp_1.index')->with('success', 'Data update successfully');
+            return redirect()->route('plantmanager.haccp_1.index')->with('success', 'Data update successfully');
         } else {
             return redirect()->back()->withErrors('Failed to delete the item. Please try again.');
         }
@@ -301,7 +301,7 @@ class HACCP01Controller extends Controller
         $data = HACCPOneModel::find($id);
 
         if (!$data) {
-            return redirect()->route('qc.haccp_1.index')->withErrors('Item not found.');
+            return redirect()->route('plantmanager.haccp_1.index')->withErrors('Item not found.');
         }
 
         // Delete related records manually if not using cascade
@@ -332,7 +332,7 @@ class HACCP01Controller extends Controller
 
         // Delete the main record
         if ($data->delete()) {
-            return redirect()->route('qc.haccp_1.index')->with('success', 'Data and related records deleted successfully.');
+            return redirect()->route('plantmanager.haccp_1.index')->with('success', 'Data and related records deleted successfully.');
         } else {
             return redirect()->back()->withErrors('Failed to delete the item. Please try again.');
         }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class SQFTwoModel extends Model
 {
@@ -10,9 +11,8 @@ class SQFTwoModel extends Model
 
     static public function getAllRecord()
     {
-        // $return = self::select('blog.*')->get();
-        $return = self::select('sqf02.*')->orderBy('id', 'ASC')->paginate(15);
-        return $return;
+        return self::where('person_perform', Auth::user()->username)
+            ->orderBy('id', 'ASC')
+            ->paginate(15);
     }
-
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\sqf;
+namespace App\Http\Controllers\qc\sqf;
 
 use App\Http\Controllers\Controller;
 use App\Models\SQFTwoModel;

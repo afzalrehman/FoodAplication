@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\haccp;
+namespace App\Http\Controllers\plantmanager\haccp;
 
 use App\Http\Controllers\Controller;
 use App\Models\HACCPTwoModel;
@@ -16,7 +16,7 @@ class HACCP02Controller extends Controller
     public function index()
     {
         $data['haccp02Record'] = HACCPTwoModel::getAllRecord();
-        return view('QC.haccp.haccp_02.index', $data);
+        return view('plant_manager.haccp.haccp_02.index', $data);
     }
 
     /**
@@ -25,7 +25,7 @@ class HACCP02Controller extends Controller
     public function create()
     {
         $data['plantManagerRecord'] = User::where('role', '=', '2')->get();
-        return view('QC.haccp.haccp_02.add', $data);
+        return view('plant_manager.haccp.haccp_02.add', $data);
     }
 
     /**
@@ -52,7 +52,7 @@ class HACCP02Controller extends Controller
         $data->results = trim($request['results']);
 
         if ($data->save()) {
-            return redirect()->route('qc.haccp_2.index')->with('success', 'Data saved successfully');
+            return redirect()->route('plantmanager.haccp_2.index')->with('success', 'Data saved successfully');
         } else {
             return redirect()->back()->withErrors('Failed to save the data. Please try again.');
         }
@@ -85,7 +85,7 @@ class HACCP02Controller extends Controller
             ->where('role', '=', '2')
             ->get();
 
-        return view('QC.haccp.haccp_02.edit', $data);
+        return view('plant_manager.haccp.haccp_02.edit', $data);
     }
 
     /**
@@ -110,11 +110,11 @@ class HACCP02Controller extends Controller
         $data->results = trim($request['results']);
 
         if (!$data) {
-            return redirect()->route('qc.haccp_2.index')->withErrors('Item not found.');
+            return redirect()->route('plantmanager.haccp_2.index')->withErrors('Item not found.');
         }
 
         if ($data->save()) {
-            return redirect()->route('qc.haccp_2.index')->with('success', 'Data updated successfully');
+            return redirect()->route('plantmanager.haccp_2.index')->with('success', 'Data updated successfully');
         } else {
             return redirect()->back()->withErrors('Failed to save the data. Please try again.');
         }
@@ -128,12 +128,12 @@ class HACCP02Controller extends Controller
         $data = HACCPTwoModel::find($id);
 
         if (!$data) {
-            return redirect()->route('qc.haccp_2.index')->withErrors('Item not found.');
+            return redirect()->route('plantmanager.haccp_2.index')->withErrors('Item not found.');
         }
 
         // Delete the main record
         if ($data->delete()) {
-            return redirect()->route('qc.haccp_2.index')->with('success', 'Data deleted successfully.');
+            return redirect()->route('plantmanager.haccp_2.index')->with('success', 'Data deleted successfully.');
         } else {
             return redirect()->back()->withErrors('Failed to delete the item. Please try again.');
         }

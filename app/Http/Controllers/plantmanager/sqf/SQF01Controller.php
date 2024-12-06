@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\sqf;
+namespace App\Http\Controllers\plantmanager\sqf;
 
-use App\Events\QcPostNotification;
 use App\Http\Controllers\Controller;
 use App\Models\SQFOneModel;
 use App\Models\User;
@@ -17,7 +16,7 @@ class SQF01Controller extends Controller
     public function index()
     {
         $data['sqf01Record'] = SQFOneModel::getAllRecord();
-        return view('QC.sqf.sqf_01.index', $data);
+        return view('plant_manager.sqf.sqf_01.index', $data);
     }
 
     /**
@@ -26,7 +25,7 @@ class SQF01Controller extends Controller
     public function create()
     {
         $data['plantManagerRecord'] = User::where('role', '=', '2')->get();
-        return view('QC.sqf.sqf_01.add', $data);
+        return view('plant_manager.sqf.sqf_01.add', $data);
     }
 
     /**
@@ -69,12 +68,11 @@ class SQF01Controller extends Controller
         $data->others = trim($request['others']);
 
         if (!$data) {
-            return redirect()->route('qc.sqf_1.index')->withErrors('Item not found.');
+            return redirect()->route('plantmanager.sqf_1.index')->withErrors('Item not found.');
         }
 
         if ($data->save()) {
-            event(new QcPostNotification($data));
-            return redirect()->route('qc.sqf_1.index')->with('success', 'Data saved successfully');
+            return redirect()->route('plantmanager.sqf_1.index')->with('success', 'Data saved successfully');
         } else {
             return redirect()->back()->withErrors('Failed to delete the item. Please try again.');
         }
@@ -93,7 +91,7 @@ class SQF01Controller extends Controller
             ->where('role', '=', '2')
             ->get();
 
-        return view('QC.sqf.sqf_01.view', $data);
+        return view('plant_manager.sqf.sqf_01.view', $data);
     }
 
     /**
@@ -111,7 +109,7 @@ class SQF01Controller extends Controller
 
         // dd($data['sqfUserRecord']);
 
-        return view('QC.sqf.sqf_01.edit', $data);
+        return view('plant_manager.sqf.sqf_01.edit', $data);
     }
 
     /**
@@ -155,11 +153,11 @@ class SQF01Controller extends Controller
 
 
         if (!$data) {
-            return redirect()->route('qc.sqf_1.index')->withErrors('Item not found.');
+            return redirect()->route('plantmanager.sqf_1.index')->withErrors('Item not found.');
         }
 
         if ($data->save()) {
-            return redirect()->route('qc.sqf_1.index')->with('success', 'Data update successfully');
+            return redirect()->route('plantmanager.sqf_1.index')->with('success', 'Data update successfully');
         } else {
             return redirect()->back()->withErrors('Failed to delete the item. Please try again.');
         }
@@ -173,11 +171,11 @@ class SQF01Controller extends Controller
         $data = SQFOneModel::find($id);
 
         if (!$data) {
-            return redirect()->route('qc.sqf_1.index')->withErrors('Item not found.');
+            return redirect()->route('plantmanager.sqf_1.index')->withErrors('Item not found.');
         }
 
         if ($data->delete()) {
-            return redirect()->route('qc.sqf_1.index')->with('success', 'Data deleted successfully');
+            return redirect()->route('plantmanager.sqf_1.index')->with('success', 'Data deleted successfully');
         } else {
             return redirect()->back()->withErrors('Failed to delete the item. Please try again.');
         }
