@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\qc;
 
 use App\Models\User;
-use Hash;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -55,7 +55,7 @@ class QcController extends Controller
             return redirect()->back()->with('error', 'Old Password Does not match.');
         }
     }
-    
+
 
     public function logout(Request $request)
     {
