@@ -1,4 +1,4 @@
-@extends('qc.admin_dashboard')
+@extends('QC.admin_dashboard')
 @section('content')
     <div class="main-content">
         <div class="product-count d-flex align-items-center gap-3 gap-lg-4 mb-4 fw-medium flex-wrap font-text1">

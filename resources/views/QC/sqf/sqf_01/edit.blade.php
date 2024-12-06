@@ -1,4 +1,4 @@
-@extends('qc.admin_dashboard')
+@extends('QC.admin_dashboard')
 @section('content')
 
     <form method="POST" action="{{ route('qc.sqf_1.edit', $sqf01Record->id) }}" class="row g-3 needs-validation" novalidate
