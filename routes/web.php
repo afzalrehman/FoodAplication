@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\haccp\HACCP01Controller;
 use App\Http\Controllers\haccp\HACCP02Controller;
 use App\Http\Controllers\haccp\HACCP03Controller;
+use App\Http\Controllers\haccp\HACCP04Controller;
 use App\Http\Controllers\qc\haccp_01_controller;
 use App\Http\Controllers\plantmanager\PlantManagerController;
 use App\Http\Controllers\ProfileController;
@@ -147,7 +148,6 @@ Route::middleware(['auth', 'role:4'])->group(function () {
         Route::post('haccp/01/edit/{id}', [HACCP01Controller::class, 'update'])->name('haccp_1.update');
         Route::delete('haccp/01/destroy/{id}', [HACCP01Controller::class, 'destroy'])->name('haccp_1.destroy');
 
-        // Route::get('haccp/01', [haccp_01_controller::class, 'qc_haccp_01_add'])->name('haccp.add');
 
         // ------------ haccp_0 ------------
         Route::get('haccp/02', [HACCP02Controller::class, 'index'])->name('haccp_2.index');
@@ -158,7 +158,6 @@ Route::middleware(['auth', 'role:4'])->group(function () {
         Route::post('haccp/02/edit/{id}', [HACCP02Controller::class, 'update'])->name('haccp_2.update');
         Route::delete('haccp/02/destroy/{id}', [HACCP02Controller::class, 'destroy'])->name('haccp_2.destroy');
 
-        // Route::get('haccp-02', [haccp_02_controller::class, 'qc_haccp_02_add'])->name('haccp_2.add');
 
         // ------------ haccp_03 ------------
         Route::get('haccp/03', [HACCP03Controller::class, 'index'])->name('haccp_3.index');
@@ -169,7 +168,17 @@ Route::middleware(['auth', 'role:4'])->group(function () {
         Route::post('haccp/03/edit/{id}', [HACCP03Controller::class, 'update'])->name('haccp_3.update');
         Route::delete('haccp/03/destroy/{id}', [HACCP03Controller::class, 'destroy'])->name('haccp_3.destroy');
 
-        Route::get('haccp-03', [haccp_03_controller::class, 'qc_haccp_03_add'])->name('haccp_3.add');
+
+        // ------------ haccp_04 ------------
+        Route::get('haccp/04', [HACCP04Controller::class, 'index'])->name('haccp_4.index');
+        Route::get('haccp/04/add', [HACCP04Controller::class, 'create'])->name('haccp_4.add');
+        Route::post('haccp/04/add', [HACCP04Controller::class, 'store'])->name('haccp_4.store');
+        Route::get('haccp/04/show/{id}', [HACCP04Controller::class, 'show'])->name('haccp_4.show');
+        Route::get('haccp/04/edit/{id}', [HACCP04Controller::class, 'edit'])->name('haccp_4.edit');
+        Route::post('haccp/04/edit/{id}', [HACCP04Controller::class, 'update'])->name('haccp_4.update');
+        Route::delete('haccp/04/destroy/{id}', [HACCP04Controller::class, 'destroy'])->name('haccp_4.destroy');
+
+
     });
 });
 

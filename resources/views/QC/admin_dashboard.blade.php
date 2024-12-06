@@ -50,6 +50,14 @@
             'qc.haccp_2.add',
             'qc.haccp_2.edit',
             'qc.haccp_2.show',
+            'qc.haccp_3.index',
+            'qc.haccp_3.add',
+            'qc.haccp_3.edit',
+            'qc.haccp_3.show',
+            'qc.haccp_4.index',
+            'qc.haccp_4.add',
+            'qc.haccp_4.edit',
+            'qc.haccp_4.show',
         ]))
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
         <link rel="stylesheet"
@@ -126,6 +134,14 @@
             'qc.haccp_2.add',
             'qc.haccp_2.edit',
             'qc.haccp_2.show',
+            'qc.haccp_3.index',
+            'qc.haccp_3.add',
+            'qc.haccp_3.edit',
+            'qc.haccp_3.show',
+            'qc.haccp_4.index',
+            'qc.haccp_4.add',
+            'qc.haccp_4.edit',
+            'qc.haccp_4.show',
         ]))
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script src="{{ asset('assets/plugins/select2/js/select2-custom.js') }}"></script>

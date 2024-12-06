@@ -17,7 +17,6 @@ class HACCP02Controller extends Controller
     {
         $data['haccp02Record'] = HACCPTwoModel::getAllRecord();
         return view('QC.haccp.haccp_02.index', $data);
-
     }
 
     /**
@@ -51,14 +50,12 @@ class HACCP02Controller extends Controller
         $data->verified_time = trim($request['verified_time']);
         $data->verified_method = trim($request['verified_method']);
         $data->results = trim($request['results']);
-        
+
         if ($data->save()) {
             return redirect()->route('qc.haccp_2.index')->with('success', 'Data saved successfully');
         } else {
             return redirect()->back()->withErrors('Failed to save the data. Please try again.');
         }
-
-
     }
 
     /**
@@ -111,7 +108,7 @@ class HACCP02Controller extends Controller
         $data->verified_time = trim($request['verified_time']);
         $data->verified_method = trim($request['verified_method']);
         $data->results = trim($request['results']);
-        
+
         if (!$data) {
             return redirect()->route('qc.haccp_2.index')->withErrors('Item not found.');
         }
@@ -128,6 +125,17 @@ class HACCP02Controller extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = HACCPTwoModel::find($id);
+
+        if (!$data) {
+            return redirect()->route('qc.haccp_2.index')->withErrors('Item not found.');
+        }
+
+        // Delete the main record
+        if ($data->delete()) {
+            return redirect()->route('qc.haccp_2.index')->with('success', 'Data deleted successfully.');
+        } else {
+            return redirect()->back()->withErrors('Failed to delete the item. Please try again.');
+        }
     }
 }
