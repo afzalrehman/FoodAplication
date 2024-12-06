@@ -1,17 +1,16 @@
 @extends('QC.admin_dashboard')
 @section('content')
+    <!-- [ page-header ] start -->
+    <div class="main-content">
+        <div class="product-count d-flex align-items-center gap-3 gap-lg-4 mb-4 fw-medium flex-wrap font-text1">
+            {{--  <a href=""><span class="me-1">Dashboard</span><span class="text-secondary"></span></a>  --}}
+            <a href="{{ route('qc.sqf_2.index') }}"><span>SQF 02</span><span class="text-secondary"></span></a>
+            <a href="#"><span>Add</span><span class="text-secondary"></span></a>
+        </div>
+        <form method="POST" action="{{ route('qc.sqf_2.store') }}" class="row g-3 needs-validation" novalidate
+            enctype="multipart/form-data">
+            @csrf
 
-    <form method="POST" action="{{ route('qc.sqf_2.store') }}" class="row g-3 needs-validation" novalidate
-        enctype="multipart/form-data">
-        @csrf
-
-        <!-- [ page-header ] start -->
-        <div class="main-content">
-            <div class="product-count d-flex align-items-center gap-3 gap-lg-4 mb-4 fw-medium flex-wrap font-text1">
-                {{--  <a href=""><span class="me-1">Dashboard</span><span class="text-secondary"></span></a>  --}}
-                <a href="{{ route('qc.sqf_2.index') }}"><span>SQF 02</span><span class="text-secondary"></span></a>
-                <a href="#"><span>Add</span><span class="text-secondary"></span></a>
-            </div>
 
             <div class="row">
                 <div class="col-xl-12">
@@ -216,9 +215,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- [ Main Content ] end -->
-    </form>
+        </form>
+    </div>
+    <!-- [ Main Content ] end -->
 @endsection
 @section('script')
     <script>
@@ -236,5 +235,4 @@
         });
     </script>
     <script src="{{ asset('assets/plugins/select2/js/qc-customs.js') }}"></script>
-
 @endsection

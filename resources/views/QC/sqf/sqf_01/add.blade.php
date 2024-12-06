@@ -1,15 +1,15 @@
 @extends('QC.admin_dashboard')
 @section('content')
-
-    <form method="POST" action="{{ route('qc.sqf_1.store') }}" class="row g-3 needs-validation" novalidate
-        enctype="multipart/form-data">
-        @csrf
-        <div class="main-content">
-            <div class="product-count d-flex align-items-center gap-3 gap-lg-4 mb-4 fw-medium flex-wrap font-text1">
-                {{--  <a href=""><span class="me-1">Dashboard</span><span class="text-secondary"></span></a>  --}}
-                <a href="{{ route('qc.sqf_1.index') }}"><span>SQF 01</span><span class="text-secondary"></span></a>
-                <a href="#"><span>Add</span><span class="text-secondary"></span></a>
-            </div>
+    <div class="main-content">
+        <div class="product-count d-flex align-items-center gap-3 gap-lg-4 mb-4 fw-medium flex-wrap font-text1">
+            {{--  <a href=""><span class="me-1">Dashboard</span><span class="text-secondary"></span></a>  --}}
+            <a href="{{ route('qc.sqf_1.index') }}"><span>SQF 01</span><span class="text-secondary"></span></a>
+            <a href="#"><span>Add</span><span class="text-secondary"></span></a>
+        </div>
+        
+        <form method="POST" action="{{ route('qc.sqf_1.store') }}" class="row g-3 needs-validation" novalidate
+            enctype="multipart/form-data">
+            @csrf
 
             <div class="row">
                 <!-- ------col-lg-12------- -->
@@ -467,10 +467,10 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
 
-    
+        </form>
+
+    </div>
 @endsection
 @section('script')
     <script>

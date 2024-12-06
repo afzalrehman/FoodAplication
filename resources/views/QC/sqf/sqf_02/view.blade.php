@@ -1,14 +1,14 @@
 @extends('QC.admin_dashboard')
 @section('content')
-    <form method="POST" action="{{ route('qc.sqf_2.edit', $sqf02Record->id) }}" class="row g-3 needs-validation" novalidate
-        enctype="multipart/form-data">
-        @csrf
-        <div class="main-content">
-            <div class="product-count d-flex align-items-center gap-3 gap-lg-4 mb-4 fw-medium flex-wrap font-text1">
-                {{--  <a href=""><span class="me-1">Dashboard</span><span class="text-secondary"></span></a>  --}}
-                <a href="{{ route('qc.sqf_2.index') }}"><span>SQF 02</span><span class="text-secondary"></span></a>
-                <a href="#"><span>View</span><span class="text-secondary"></span></a>
-            </div>
+    <div class="main-content">
+        <div class="product-count d-flex align-items-center gap-3 gap-lg-4 mb-4 fw-medium flex-wrap font-text1">
+            {{--  <a href=""><span class="me-1">Dashboard</span><span class="text-secondary"></span></a>  --}}
+            <a href="{{ route('qc.sqf_2.index') }}"><span>SQF 02</span><span class="text-secondary"></span></a>
+            <a href="#"><span>View</span><span class="text-secondary"></span></a>
+        </div>
+        <form method="POST" action="{{ route('qc.sqf_2.edit', $sqf02Record->id) }}" class="row g-3 needs-validation"
+            novalidate enctype="multipart/form-data">
+            @csrf
 
             <div class="row">
                 <div class="col-12 col-xl-12">
@@ -80,9 +80,11 @@
                                         <select class="form-select" name="no_rodent_activity" id="no_rodent_activity">
                                             <option value="" selected disabled>--- Yes or No ---</option>
                                             <option value="Yes"
-                                                {{ $sqf02Record->no_rodent_activity == 'Yes' ? 'selected' : '' }}>Yes</option>
+                                                {{ $sqf02Record->no_rodent_activity == 'Yes' ? 'selected' : '' }}>Yes
+                                            </option>
                                             <option value="No"
-                                                {{ $sqf02Record->no_rodent_activity == 'No' ? 'selected' : '' }}>No</option>
+                                                {{ $sqf02Record->no_rodent_activity == 'No' ? 'selected' : '' }}>No
+                                            </option>
 
                                         </select>
                                     </div>
@@ -97,7 +99,8 @@
                                         <select class="form-select" name="handwash_station" id="handwash_station">
                                             <option value="" selected disabled>--- Yes or No ---</option>
                                             <option value="Yes"
-                                                {{ $sqf02Record->handwash_station == 'Yes' ? 'selected' : '' }}>Yes</option>
+                                                {{ $sqf02Record->handwash_station == 'Yes' ? 'selected' : '' }}>Yes
+                                            </option>
                                             <option value="No"
                                                 {{ $sqf02Record->handwash_station == 'No' ? 'selected' : '' }}>No</option>
 
@@ -114,7 +117,8 @@
                                         <select class="form-select" name="employee_hygiene" id="employee_hygiene">
                                             <option value="" selected disabled>--- Yes or No ---</option>
                                             <option value="Yes"
-                                                {{ $sqf02Record->employee_hygiene == 'Yes' ? 'selected' : '' }}>Yes</option>
+                                                {{ $sqf02Record->employee_hygiene == 'Yes' ? 'selected' : '' }}>Yes
+                                            </option>
                                             <option value="No"
                                                 {{ $sqf02Record->employee_hygiene == 'No' ? 'selected' : '' }}>No</option>
 
@@ -182,7 +186,8 @@
                                         <select class="form-select" name="paa_concentration" id="paa_concentration">
                                             <option value="" selected disabled>--- Yes or No ---</option>
                                             <option value="Yes"
-                                                {{ $sqf02Record->paa_concentration == 'Yes' ? 'selected' : '' }}>Yes</option>
+                                                {{ $sqf02Record->paa_concentration == 'Yes' ? 'selected' : '' }}>Yes
+                                            </option>
                                             <option value="No"
                                                 {{ $sqf02Record->paa_concentration == 'No' ? 'selected' : '' }}>No</option>
 
@@ -199,9 +204,11 @@
                                         <select class="form-select" name="no_rodent_droppings" id="no_rodent_droppings">
                                             <option value="" selected disabled>--- Yes or No ---</option>
                                             <option value="Yes"
-                                                {{ $sqf02Record->no_rodent_droppings == 'Yes' ? 'selected' : '' }}>Yes</option>
+                                                {{ $sqf02Record->no_rodent_droppings == 'Yes' ? 'selected' : '' }}>Yes
+                                            </option>
                                             <option value="No"
-                                                {{ $sqf02Record->no_rodent_droppings == 'No' ? 'selected' : '' }}>No</option>
+                                                {{ $sqf02Record->no_rodent_droppings == 'No' ? 'selected' : '' }}>No
+                                            </option>
 
                                         </select>
                                     </div>
@@ -217,9 +224,11 @@
                                             id="rework_chicken_process">
                                             <option value="" selected disabled>--- Yes or No ---</option>
                                             <option value="Yes"
-                                                {{ $sqf02Record->rework_chicken_process == 'Yes' ? 'selected' : '' }}>Yes</option>
+                                                {{ $sqf02Record->rework_chicken_process == 'Yes' ? 'selected' : '' }}>Yes
+                                            </option>
                                             <option value="No"
-                                                {{ $sqf02Record->rework_chicken_process == 'No' ? 'selected' : '' }}>No</option>
+                                                {{ $sqf02Record->rework_chicken_process == 'No' ? 'selected' : '' }}>No
+                                            </option>
 
                                         </select>
                                     </div>
@@ -232,10 +241,10 @@
                                         </label>
                                         <select class="form-select" id="others" name="others">
                                             <option value="" selected disabled>--- Yes or No ---</option>
-                                            <option value="Yes"
-                                                {{ $sqf02Record->others == 'Yes' ? 'selected' : '' }}>Yes</option>
-                                            <option value="No"
-                                                {{ $sqf02Record->others == 'No' ? 'selected' : '' }}>No</option>
+                                            <option value="Yes" {{ $sqf02Record->others == 'Yes' ? 'selected' : '' }}>
+                                                Yes</option>
+                                            <option value="No" {{ $sqf02Record->others == 'No' ? 'selected' : '' }}>No
+                                            </option>
 
                                         </select>
                                     </div>
@@ -256,8 +265,8 @@
                 </div>
 
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 @endsection
 @section('script')
     <script>
@@ -275,5 +284,4 @@
         });
     </script>
     <script src="{{ asset('assets/plugins/select2/js/qc-customs.js') }}"></script>
-
 @endsection
