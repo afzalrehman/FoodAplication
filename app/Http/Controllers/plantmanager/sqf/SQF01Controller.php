@@ -24,7 +24,7 @@ class SQF01Controller extends Controller
      */
     public function create()
     {
-        $data['plantManagerRecord'] = User::where('role', '=', '2')->get();
+        $data['plantManagerRecord'] = User::where('role', '=', '4')->get();
         return view('plant_manager.sqf.sqf_01.add', $data);
     }
 
@@ -88,7 +88,7 @@ class SQF01Controller extends Controller
         $sqf = $data['sqf01Record']->person_perfo_check;
 
         $data['plantManagerRecord'] = User::where('username', '!=', $sqf)
-            ->where('role', '=', '2')
+            ->where('role', '=', '4')
             ->get();
 
         return view('plant_manager.sqf.sqf_01.view', $data);
@@ -104,7 +104,7 @@ class SQF01Controller extends Controller
         $sqf = $data['sqf01Record']->person_perfo_check;
 
         $data['plantManagerRecord'] = User::where('username', '!=', $sqf)
-            ->where('role', '=', '2')
+            ->where('role', '=', '4')
             ->get();
 
         // dd($data['sqfUserRecord']);

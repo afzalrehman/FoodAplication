@@ -24,7 +24,7 @@ class HACCP02Controller extends Controller
      */
     public function create()
     {
-        $data['plantManagerRecord'] = User::where('role', '=', '2')->get();
+        $data['plantManagerRecord'] = User::where('role', '=', '4')->get();
         return view('plant_manager.haccp.haccp_02.add', $data);
     }
 
@@ -67,7 +67,7 @@ class HACCP02Controller extends Controller
 
         $sqf = $data['haccp02Record']->person_perfo_check;
         $data['plantManagerRecord'] = User::where('username', '!=', $sqf)
-            ->where('role', '=', '2')
+            ->where('role', '=', '4')
             ->get();
 
         return view('QC.haccp.haccp_02.view', $data);
@@ -82,7 +82,7 @@ class HACCP02Controller extends Controller
 
         $sqf = $data['haccp02Record']->person_perfo_check;
         $data['plantManagerRecord'] = User::where('username', '!=', $sqf)
-            ->where('role', '=', '2')
+            ->where('role', '=', '4')
             ->get();
 
         return view('plant_manager.haccp.haccp_02.edit', $data);
